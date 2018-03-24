@@ -68,6 +68,7 @@
   <ItemGroup>
     <Content Include="AddEmployeeByHR.aspx" />
     <Content Include="AddSite.aspx" />
+    <Content Include="AssignSchedule.aspx" />
     <Content Include="CheckIOByE.aspx" />
     <Content Include="home.aspx" />
     <Content Include="Login.aspx" />
@@ -112,6 +113,13 @@
     </Compile>
     <Compile Include="AddSite.aspx.designer.cs">
       <DependentUpon>AddSite.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssignSchedule.aspx.cs">
+      <DependentUpon>AssignSchedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssignSchedule.aspx.designer.cs">
+      <DependentUpon>AssignSchedule.aspx</DependentUpon>
     </Compile>
     <Compile Include="CheckIOByE.aspx.cs">
       <DependentUpon>CheckIOByE.aspx</DependentUpon>

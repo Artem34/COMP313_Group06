@@ -5,138 +5,164 @@
         .auto-style3 {
             margin-left: 112px;
         }
+        .auto-style4 {
+            width: 113px;
+        }
+        .auto-style5 {
+            width: 176px;
+        }
+        .auto-style6 {
+            width: 113px;
+            height: 44px;
+        }
+        .auto-style8 {
+            margin-bottom: 4px;
+        }
+        .auto-style9 {
+            width: 163px;
+        }
+        .auto-style10 {
+            width: 163px;
+            height: 44px;
+        }
+        .auto-style11 {
+            width: 113px;
+            height: 30px;
+        }
+        .auto-style12 {
+            width: 163px;
+            height: 30px;
+        }
+        .auto-style13 {
+            width: 176px;
+            height: 30px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <body>
     
         <div>
+           
+           <asp:Label ID="Label1" runat="server" Text="Availability for Current Schedule:" Font-Bold="True" Font-Italic="True" Font-Size="X-Large" Font-Underline="True"></asp:Label>
+
+            <br />
+
             <table>
                 <tr>
-                    <td>
-                        <asp:Label ID="Label1" runat="server" Text="Availability for Current Schedule:" Font-Bold="True" Font-Italic="True" Font-Size="X-Large" Font-Underline="True"></asp:Label>
+                    <td class="auto-style11">
+                        <asp:CheckBox ID="chkMon" runat="server" Text="Monday" />
                     </td>
-                </tr>
-                <tr>
-                    <td>
-                        <asp:CheckBox ID="CheckBox1" runat="server" /><asp:Label ID="Label2" runat="server" Text="MONDAY" Font-Bold="True"></asp:Label>
-                    </td>
-                    <td>
-                        <asp:RadioButton ID="RadioButton1" runat="server" /><asp:Label ID="Label3" runat="server" Text="All Day" Font-Bold="True"></asp:Label>
-                    </td>
-                    <td>
-                        <asp:RadioButton ID="RadioButton2" runat="server" /><asp:Label ID="Label4" runat="server" Text="Start Time:" Font-Bold="True"></asp:Label>
-                        <asp:DropDownList ID="DropDownList1" runat="server">
+                    
+                    <td class="auto-style12">
+                        <asp:Label ID="Label4" runat="server" Text="Start Time:" Font-Bold="True"></asp:Label>
+                        <asp:DropDownList ID="startMon" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Height="16px" Width="64px">
                             <asp:ListItem Value="1"></asp:ListItem>
                             <asp:ListItem Value="24"></asp:ListItem>
-                        </asp:DropDownList></td><td><asp:Label ID="Label5" runat="server" Text="End Time:" Font-Bold="True"></asp:Label>
-                        <asp:DropDownList ID="DropDownList2" runat="server">
+                        </asp:DropDownList>
+                       </td><td class="auto-style13">&nbsp;<asp:Label ID="Label5" runat="server" Text="End Time:" Font-Bold="True"></asp:Label>
+                        <asp:DropDownList ID="endMon" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Width="64px">
                             <asp:ListItem Value="1"></asp:ListItem>
                         </asp:DropDownList></td>
                 </tr>
                 <tr>
-                    <td>
-                        <asp:CheckBox ID="CheckBox2" runat="server" /><asp:Label ID="Label6" runat="server" Text="TUESDAY" Font-Bold="True"></asp:Label>
+                    <td class="auto-style4">
+                        <asp:CheckBox ID="chkTue" runat="server" Text="Tuesday" />
                     </td>
-                    <td>
-                        <asp:RadioButton ID="RadioButton3" runat="server" /><asp:Label ID="Label7" runat="server" Text="All Day" Font-Bold="True"></asp:Label>
-                    </td>
-                    <td>
-                        <asp:RadioButton ID="RadioButton4" runat="server" /><asp:Label ID="Label8" runat="server" Text="Start Time:" Font-Bold="True"></asp:Label>
-                        <asp:DropDownList ID="DropDownList3" runat="server">
+                    
+                    <td class="auto-style9">
+                        <asp:Label ID="Label8" runat="server" Text="Start Time:" Font-Bold="True"></asp:Label>
+                        <asp:DropDownList ID="startTue" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Width="64px">
                             <asp:ListItem Value="1"></asp:ListItem>
                             <asp:ListItem Value="24"></asp:ListItem>
-                        </asp:DropDownList></td><td><asp:Label ID="Label9" runat="server" Text="End Time:" Font-Bold="True"></asp:Label>
-                        <asp:DropDownList ID="DropDownList4" runat="server"></asp:DropDownList></td>
+                        </asp:DropDownList></td><td class="auto-style5">&nbsp;<asp:Label ID="Label9" runat="server" Text="End Time:" Font-Bold="True"></asp:Label>
+                        <asp:DropDownList ID="endTue" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Width="64px"></asp:DropDownList></td>
                 </tr>
                 <tr>
-                    <td>
-                        <asp:CheckBox ID="CheckBox3" runat="server" /><asp:Label ID="Label10" runat="server" Text="WEDNESDAY" Font-Bold="True"></asp:Label>
+                    <td class="auto-style4">
+                        <asp:CheckBox ID="chkWed" runat="server" Text="Wednesday" />
                     </td>
-                    <td>
-                        <asp:RadioButton ID="RadioButton5" runat="server" /><asp:Label ID="Label11" runat="server" Text="All Day" Font-Bold="True"></asp:Label>
-                    </td>
-                    <td>
-                        <asp:RadioButton ID="RadioButton6" runat="server" /><asp:Label ID="Label12" runat="server" Text="Start Time:" Font-Bold="True"></asp:Label>
-                        <asp:DropDownList ID="DropDownList5" runat="server">
+                   
+                    <td class="auto-style9">
+                        <asp:Label ID="Label12" runat="server" Text="Start Time:" Font-Bold="True"></asp:Label>
+                        <asp:DropDownList ID="startWed" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Height="16px" Width="64px">
                             <asp:ListItem Value="1"></asp:ListItem>
                             <asp:ListItem Value="24"></asp:ListItem>
-                        </asp:DropDownList></td><td><asp:Label ID="Label13" runat="server" Text="End Time:" Font-Bold="True"></asp:Label>
-                        <asp:DropDownList ID="DropDownList6" runat="server"></asp:DropDownList></td>
+                        </asp:DropDownList></td><td class="auto-style5"><asp:Label ID="Label13" runat="server" Text="End Time:" Font-Bold="True"></asp:Label>
+                        <asp:DropDownList ID="endWed" runat="server" CssClass="auto-style8" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Width="64px"></asp:DropDownList></td>
                 </tr>
                 <tr>
-                    <td>
-                        <asp:CheckBox ID="CheckBox4" runat="server" /><asp:Label ID="Label14" runat="server" Text="THURDDAY" Font-Bold="True"></asp:Label>
+                    <td class="auto-style4">
+                        <asp:CheckBox ID="chkThu" runat="server" Text="Thursday" />
                     </td>
-                    <td>
-                        <asp:RadioButton ID="RadioButton7" runat="server" /><asp:Label ID="Label15" runat="server" Text="All Day" Font-Bold="True"></asp:Label>
-                    </td>
-                    <td>
-                        <asp:RadioButton ID="RadioButton8" runat="server" /><asp:Label ID="Label16" runat="server" Text="Start Time:" Font-Bold="True"></asp:Label>
-                        <asp:DropDownList ID="DropDownList7" runat="server">
+                    
+                    <td class="auto-style9">
+                        <asp:Label ID="Label16" runat="server" Text="Start Time:" Font-Bold="True"></asp:Label>
+                        <asp:DropDownList ID="startThu" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Height="16px" Width="64px">
                             <asp:ListItem Value="1"></asp:ListItem>
                             <asp:ListItem Value="24"></asp:ListItem>
-                        </asp:DropDownList></td><td><asp:Label ID="Label17" runat="server" Text="End Time:" Font-Bold="True"></asp:Label>
-                        <asp:DropDownList ID="DropDownList8" runat="server"></asp:DropDownList></td>
+                        </asp:DropDownList></td><td class="auto-style5"><asp:Label ID="Label17" runat="server" Text="End Time:" Font-Bold="True"></asp:Label>
+                        <asp:DropDownList ID="endThu" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Width="64px"></asp:DropDownList></td>
                 </tr>
                 <tr>
-                    <td>
-                        <asp:CheckBox ID="CheckBox5" runat="server" /><asp:Label ID="Label18" runat="server" Text="FRIDAY" Font-Bold="True"></asp:Label>
+                    <td class="auto-style4">
+                        <asp:CheckBox ID="chkFri" runat="server" Text="Friday" />
                     </td>
-                    <td>
-                        <asp:RadioButton ID="RadioButton9" runat="server" /><asp:Label ID="Label19" runat="server" Text="All Day" Font-Bold="True"></asp:Label>
-                    </td>
-                    <td>
-                        <asp:RadioButton ID="RadioButton10" runat="server" /><asp:Label ID="Label20" runat="server" Text="Start Time:" Font-Bold="True"></asp:Label>
-                        <asp:DropDownList ID="DropDownList9" runat="server" AutoPostBack="True">
+                    
+                    <td class="auto-style9">
+                        <asp:Label ID="Label20" runat="server" Text="Start Time:" Font-Bold="True"></asp:Label>
+                        <asp:DropDownList ID="startFri" runat="server" AutoPostBack="True" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Height="16px" Width="64px">
                             <asp:ListItem Value="1"></asp:ListItem>
                             <asp:ListItem Value="24"></asp:ListItem>
-                        </asp:DropDownList></td><td><asp:Label ID="Label21" runat="server" Text="End Time:" Font-Bold="True"></asp:Label>
-                        <asp:DropDownList ID="DropDownList10" runat="server"></asp:DropDownList></td>
+                        </asp:DropDownList></td><td class="auto-style5"><asp:Label ID="Label21" runat="server" Text="End Time:" Font-Bold="True"></asp:Label>
+                        <asp:DropDownList ID="endFri" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Width="64px"></asp:DropDownList></td>
                 </tr>
                 <tr>
-                    <td>
-                        <asp:CheckBox ID="CheckBox6" runat="server" /><asp:Label ID="Label22" runat="server" Text="SATURDAY" Font-Bold="True"></asp:Label>
+                    <td class="auto-style4">
+                        <asp:CheckBox ID="chkSat" runat="server" Text="Saturday" />
                     </td>
-                    <td>
-                        <asp:RadioButton ID="RadioButton11" runat="server" /><asp:Label ID="Label23" runat="server" Text="All Day" Font-Bold="True"></asp:Label>
-                    </td>
-                    <td>
-                        <asp:RadioButton ID="RadioButton12" runat="server" /><asp:Label ID="Label24" runat="server" Text="Start Time:" Font-Bold="True"></asp:Label>
-                        <asp:DropDownList ID="DropDownList11" runat="server">
+                  
+                    <td class="auto-style9">
+                        <asp:Label ID="Label24" runat="server" Text="Start Time:" Font-Bold="True"></asp:Label>
+                        <asp:DropDownList ID="startSat" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Height="19px" Width="64px">
                             <asp:ListItem Value="1"></asp:ListItem>
                             <asp:ListItem Value="24"></asp:ListItem>
-                        </asp:DropDownList></td><td><asp:Label ID="Label25" runat="server" Text="End Time:" Font-Bold="True"></asp:Label>
-                        <asp:DropDownList ID="DropDownList12" runat="server"></asp:DropDownList></td>
+                        </asp:DropDownList></td><td class="auto-style5"><asp:Label ID="Label25" runat="server" Text="End Time:" Font-Bold="True"></asp:Label>
+                        <asp:DropDownList ID="endSat" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Width="64px"></asp:DropDownList></td>
                 </tr>
                 <tr>
-                    <td>
-                        <asp:CheckBox ID="CheckBox7" runat="server" /><asp:Label ID="Label26" runat="server" Text="SUNDAY" Font-Bold="True"></asp:Label>
+                    <td class="auto-style4">
+                        <asp:CheckBox ID="chkSun" runat="server" Text="Sunday" />
                     </td>
-                    <td>
-                        <asp:RadioButton ID="RadioButton13" runat="server" /><asp:Label ID="Label27" runat="server" Text="All Day" Font-Bold="True"></asp:Label>
-                    </td>
-                    <td>
-                        <asp:RadioButton ID="RadioButton14" runat="server" /><asp:Label ID="Label28" runat="server" Text="Start Time:" Font-Bold="True"></asp:Label>
-                        <asp:DropDownList ID="DropDownList13" runat="server">
+                    
+                    <td class="auto-style9">
+                        <asp:Label ID="Label28" runat="server" Text="Start Time:" Font-Bold="True"></asp:Label>
+                        <asp:DropDownList ID="startSun" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Height="16px" Width="64px">
                             <asp:ListItem Value="1"></asp:ListItem>
                             <asp:ListItem Value="24"></asp:ListItem>
-                        </asp:DropDownList></td><td><asp:Label ID="Label29" runat="server" Text="End Time:" Font-Bold="True"></asp:Label>
-                        <asp:DropDownList ID="DropDownList14" runat="server"></asp:DropDownList></td>
+                        </asp:DropDownList></td><td class="auto-style5"><asp:Label ID="Label29" runat="server" Text="End Time:" Font-Bold="True"></asp:Label>
+                        <asp:DropDownList ID="endSun" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Width="64px"></asp:DropDownList></td>
                 </tr>
                   <tr>
-                    <td></td>
-                        <td> <asp:Button ID="Button1" runat="server" Text="Save" />
+                    <td class="auto-style6"></td>
+                        <td class="auto-style10"> <asp:Button ID="Button1" runat="server" Text="Save" OnClick="Button1_Click" />
+                   
+                            &nbsp;&nbsp;
                    
                         <asp:Button ID="Button2" runat="server" Text="Cancel" /></td>
                 </tr>
             </table>
+            <asp:Label ID="lblErrorMsg" runat="server"></asp:Label>
+            <br />
+            <br />
         </div>
+     <asp:ObjectDataSource ID="HoursDS" runat="server" SelectMethod="GetHours" TypeName="saassecurity.TimeHours"></asp:ObjectDataSource>
+                    
 </body>
 </html>
 </asp:Content>

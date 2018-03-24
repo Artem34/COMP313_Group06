@@ -1,7 +1,8 @@
 ﻿create table users(
 userId varchar(20),
 password varchar(20),
-role varchar(10)
+role varchar(10),
+empId int
 )
 
 create table employees
@@ -29,7 +30,8 @@ contactNum int
 
 create table availability
 (
-empId int not null primary key,
+id int identity primary key,
+empId int not null,
 days varchar(100),
 startTime int,
 endTime int

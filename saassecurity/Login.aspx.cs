@@ -25,7 +25,7 @@ namespace saassecurity
             string connString = ConfigurationManager.ConnectionStrings["ScheduleDb"].ConnectionString;
             SqlConnection conn = new SqlConnection(connString);
 
-            String query = "Select count(*) from users where userId = '" + userId + "' and password='" + password + "'";
+            String query = "Select empId from users where userId = '" + userId + "' and password='" + password + "'";
 
             SqlCommand comm = new SqlCommand(query, conn);
 
@@ -34,11 +34,11 @@ namespace saassecurity
                 conn.Open();
      
 
-                int count = Convert.ToInt32(comm.ExecuteScalar());
+                int empId = Convert.ToInt32(comm.ExecuteScalar());
 
-                if (count > 0)
+                if (empId > 0)
                 {
-                    Session["empId"] = userId;
+                    Session["empId"] = empId;
 
                     Server.Transfer("home.aspx", true);
                 }

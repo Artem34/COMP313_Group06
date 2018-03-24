@@ -3,7 +3,11 @@
     
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Panel ID="Panel1" runat="server" CssClass="auto-style3" Height="308px" Width="799px">
+    <asp:Panel ID="Panel1" runat="server" CssClass="auto-style3" Height="308px" Width="846px">
+    <br />
+    <asp:Label ID="lblErrorMsg" runat="server"></asp:Label>
+    <br />
+    <br />
     User Name:&nbsp;&nbsp;&nbsp;
     <asp:TextBox ID="txtUsername" runat="server" Width="137px"></asp:TextBox>
     <br />
@@ -13,5 +17,7 @@
     <br />
     <br />
     <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Login" />
+    <br />
+    <br />
 </asp:Panel>
 </asp:Content>

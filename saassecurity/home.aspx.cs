@@ -11,7 +11,8 @@ namespace saassecurity
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
+            this.Master.WelcomeMessage = "Welcome, " + Session["empId"];
         }
 
         protected void btnAddEmp_Click(object sender, EventArgs e)

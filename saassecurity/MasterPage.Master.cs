@@ -9,6 +9,18 @@ namespace saassecurity
 {
     public partial class MasterPage : System.Web.UI.MasterPage
     {
+        public string WelcomeMessage
+        {
+            get
+            {
+                return lblWelcome.Text;
+            }
+            set
+            {
+                lblWelcome.Text = value;
+            }
+
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
 

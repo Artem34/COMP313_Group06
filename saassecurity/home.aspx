@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Panel ID="Panel1" runat="server" Height="180px">
+    <asp:Panel ID="Panel1" runat="server" Height="215px">
         <asp:Button ID="btnAddEmp" runat="server" OnClick="btnAddEmp_Click" Text="Add Employee" />
         <br />
         <br />
@@ -11,6 +11,11 @@
         <br />
         <asp:Button ID="btnAddSite" runat="server" OnClick="btnAddSite_Click" Text="Add Site" />
         <br />
+        <br />
+        <asp:Button ID="BtnViewSchedByE" runat="server" OnClick="BtnViewSchedByE_Click" Text="View Schedule by Employee" />
+        <br />
+        <br />
+        <asp:Button ID="btnViewSchedByS" runat="server" OnClick="btnViewSchedByS_Click" Text="View Schedule by Supervisor" />
         <br />
     </asp:Panel>
     <br />

@@ -16,7 +16,7 @@ namespace saassecurity
 
         protected void btnAddEmp_Click(object sender, EventArgs e)
         {
-            Server.Transfer("home.aspx", true);
+            Server.Transfer("AddEmployeeByHR.aspx", true);
         }
 
         protected void btnAddAvail_Click(object sender, EventArgs e)
@@ -27,6 +27,16 @@ namespace saassecurity
         protected void btnAddSite_Click(object sender, EventArgs e)
         {
             Server.Transfer("AddSite.aspx", true);
+        }
+
+        protected void BtnViewSchedByE_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("ViewScheduleByE.aspx", true);
+        }
+
+        protected void btnViewSchedByS_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("ViewScheduleByS.aspx", true);
         }
     }
 }

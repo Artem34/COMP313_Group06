@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="AddSite.aspx.cs" Inherits="saassecurity.AddSite" %>
+<%@ MasterType VirtualPath="~/MasterPage.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .auto-style3 {

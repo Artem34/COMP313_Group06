@@ -7,11 +7,16 @@ using System.Web.UI.WebControls;
 
 namespace saassecurity
 {
-    public partial class ViewScheduleByE : System.Web.UI.Page
+    public partial class AssignSchedule : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.Master.WelcomeMessage = "Welcome, " + Session["empId"];
+
+        }
+
+        protected void btnStartSchedAssign_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

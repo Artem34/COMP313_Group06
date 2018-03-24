@@ -1,13 +1,20 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddandUpdateAvailability.aspx.cs" Inherits="saassecurity.AddandUpdateAvailability" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage.Master" CodeBehind="AddandUpdateAvailability.aspx.cs" Inherits="saassecurity.AddandUpdateAvailability" %>
+<%@ MasterType VirtualPath="~/MasterPage.Master" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style type="text/css">
+        .auto-style3 {
+            margin-left: 112px;
+        }
+    </style>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
+
 <body>
-    <form id="form1" runat="server">
+    
         <div>
             <table>
                 <tr>
@@ -130,6 +137,6 @@
                 </tr>
             </table>
         </div>
-    </form>
 </body>
 </html>
+</asp:Content>

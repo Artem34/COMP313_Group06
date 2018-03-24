@@ -22,31 +22,58 @@ namespace saassecurity {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// empName control.
+        /// txtempid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label empName;
+        protected global::System.Web.UI.WebControls.Label txtempid;
         
         /// <summary>
-        /// siteName control.
+        /// txtsiteid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label siteName;
+        protected global::System.Web.UI.WebControls.Label txtsiteid;
         
         /// <summary>
-        /// chkstatus control.
+        /// txtdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label chkstatus;
+        protected global::System.Web.UI.WebControls.Label txtdate;
+        
+        /// <summary>
+        /// txtStartime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txtStartime;
+        
+        /// <summary>
+        /// txtEndTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txtEndTime;
+        
+        /// <summary>
+        /// txtstatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txtstatus;
         
         /// <summary>
         /// checkInE control.
@@ -65,5 +92,17 @@ namespace saassecurity {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button checkOutE;
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new saassecurity.MasterPage Master {
+            get {
+                return ((saassecurity.MasterPage)(base.Master));
+            }
+        }
     }
 }

@@ -1,18 +1,17 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewScheduleByE.aspx.cs" Inherits="saassecurity.ViewScheduleByE" %>
-
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="ViewScheduleByE.aspx.cs" Inherits="saassecurity.ViewScheduleByE" %>
+<%@ MasterType VirtualPath="~/MasterPage.Master" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    
     <style type="text/css">
-        .auto-style1 {
-            height: 23px;
+        .auto-style4 {
+            margin-right: 0px;
         }
     </style>
-</head>
+    
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
 <body>
-    <form id="form1" runat="server">
         <div>
             <table>
                <tr> <td><asp:Label ID="Label1" runat="server" Text="Current Schedule:" Font-Bold="True" Font-Italic="True" Font-Size="X-Large" Font-Strikeout="False" Font-Underline="True"></asp:Label> 
@@ -60,6 +59,5 @@
 
             </table>
         </div>
-    </form>
 </body>
-</html>
+</asp:Content>

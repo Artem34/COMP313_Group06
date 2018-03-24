@@ -22,22 +22,22 @@ namespace saassecurity {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// RadioButton1 control.
+        /// newEmp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioButton1;
+        protected global::System.Web.UI.WebControls.RadioButton newEmp;
         
         /// <summary>
-        /// RadioButton2 control.
+        /// retEmp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioButton2;
+        protected global::System.Web.UI.WebControls.RadioButton retEmp;
         
         /// <summary>
         /// Label2 control.
@@ -202,13 +202,22 @@ namespace saassecurity {
         protected global::System.Web.UI.WebControls.TextBox txtcpwd;
         
         /// <summary>
-        /// btnsave control.
+        /// btnadd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnsave;
+        protected global::System.Web.UI.WebControls.Button btnadd;
+        
+        /// <summary>
+        /// lblErrorMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMsg;
         
         /// <summary>
         /// btncancel control.
@@ -218,5 +227,17 @@ namespace saassecurity {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btncancel;
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new saassecurity.MasterPage Master {
+            get {
+                return ((saassecurity.MasterPage)(base.Master));
+            }
+        }
     }
 }

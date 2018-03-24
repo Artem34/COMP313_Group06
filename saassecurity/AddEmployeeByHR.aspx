@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="AddEmployeeByHR.aspx.cs" Inherits="saassecurity.WebForm1" %>
+<%@ MasterType VirtualPath="~/MasterPage.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -19,10 +20,10 @@
                 
                 <tr>
                     <td >
-                         <asp:RadioButton ID="RadioButton1" Text=" New Employee" Font-Bold="True" runat="server"  />
+                         <asp:RadioButton ID="newEmp" Text=" New Employee" Font-Bold="True" runat="server"  />
                     </td>
                      <td >
-                    <asp:RadioButton ID="RadioButton2" Text=" Returning Employee" Font-Bold="True" runat="server"  />                    
+                    <asp:RadioButton ID="retEmp" Text=" Returning Employee" Font-Bold="True" runat="server"  />                    
                      </td>
                 </tr>
                 <tr>
@@ -99,10 +100,17 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:Button runat="server"  ID="btnsave" Font-Bold="True" Text="Save"/>
+                        <br />
+                        <asp:Button runat="server"  ID="btnadd" Font-Bold="True" Text="Add" OnClick="btnadd_Click"/>
+                        <br />
+                        <br />
+                        <asp:Label ID="lblErrorMsg" runat="server" Text=""></asp:Label>
                     </td>
                     <td>
-                        <asp:Button runat="server" ID="btncancel" Font-Bold="True" Text="Cancel"/>
+                        <br />
+                        <asp:Button runat="server" ID="btncancel" Font-Bold="True" Text="Cancel" OnClick="btncancel_Click"/>
+                        <br />
+                        <br />
                     </td>
                 </tr>
             </table>

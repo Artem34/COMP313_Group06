@@ -38,6 +38,7 @@
                            <asp:MenuItem Text="Add Site" Value="Add Site" NavigateUrl="~/AddSite.aspx"></asp:MenuItem>
                            <asp:MenuItem Text="Add Availability" Value="Add Availability" NavigateUrl="~/AddandUpdateAvailability.aspx"></asp:MenuItem>
                            <asp:MenuItem Text="Assign Schedule" Value="Assign Schedule" NavigateUrl="~/AssignSchedule.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Assign Schedule" Value="View Schedule" NavigateUrl="~/ViewScheduleByS.aspx"></asp:MenuItem>
                        </Items>
                        <StaticHoverStyle BackColor="#284E98" ForeColor="White" />
                        <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />

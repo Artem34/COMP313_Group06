@@ -39,8 +39,8 @@ namespace saassecurity
             dbrth =  txtdate.Text.ToString();
             DateTime dbirth = DateTime.Parse(dbrth);
 
-            string insertEmp = "INSERT INTO employees(firstName,lastName,dob,address,email,contactNum,userId) VALUES(@firstName,@lastName,@dob,@address,@email,@contactNum,@userId)";
-
+            string insertEmp = "INSERT INTO employees(firstName,lastName,dob,address,email,contactNum,userId) VALUES(@firstName,@lastName,@dob,@address,@email,@contactNum,@userId);"
+                            +"SELECT CAST(scope_identity() AS int)";
             sqlcommand = new SqlCommand(insertEmp, conn);
             sqlcommand.Parameters.AddWithValue("@firstName", fname);
             sqlcommand.Parameters.AddWithValue("@lastName", lname);
@@ -54,14 +54,15 @@ namespace saassecurity
             {
 
                 conn.Open();
-                sqlcommand.ExecuteNonQuery();
+                int empId = Convert.ToInt32(sqlcommand.ExecuteScalar());
 
-                string insertUser = "INSERT INTO users(userId,password,role) VALUES(@userId,@password,@role)";
+                string insertUser = "INSERT INTO users(userId,password,role, empId) VALUES(@userId,@password,@role,@empId)";
 
                 sqlcommand = new SqlCommand(insertUser, conn);
                 sqlcommand.Parameters.AddWithValue("@userId", username);
                 sqlcommand.Parameters.AddWithValue("@password", password);
                 sqlcommand.Parameters.AddWithValue("@role", "emp");
+                sqlcommand.Parameters.AddWithValue("@empId", empId);
 
                 sqlcommand.ExecuteNonQuery();
 

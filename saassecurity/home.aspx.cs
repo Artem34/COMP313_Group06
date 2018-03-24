@@ -13,5 +13,20 @@ namespace saassecurity
         {
 
         }
+
+        protected void btnAddEmp_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("home.aspx", true);
+        }
+
+        protected void btnAddAvail_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("AddandUpdateAvailability.aspx", true);
+        }
+
+        protected void btnAddSite_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("AddSite.aspx", true);
+        }
     }
 }

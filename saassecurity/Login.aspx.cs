@@ -19,7 +19,7 @@ namespace saassecurity
             String userId = txtUsername.Text;
             String password = txtPassword.Text;
 
-            Server.Transfer("ViewScheduleByE.aspx", true);
+            Server.Transfer("home.aspx", true);
         }
     }
 }

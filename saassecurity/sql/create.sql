@@ -24,10 +24,7 @@ siteId int identity primary key,
 siteName varchar(20),
 siteAddress varchar(100),
 contactPerson varchar(30),
-contactNum int,
-shiftDays varchar(100),
-shiftStart int,
-shiftEnd int
+contactNum int
 )
 
 create table availability
@@ -47,4 +44,12 @@ startTime int not null,
 endTime int not null,
 empId int not null,
 checkInStatus char(10)
+)
+
+create table SiteShifts(
+id int identity primary key,
+siteId int not null,
+day varchar(5),
+startTime int,
+endTime int
 )

@@ -1,15 +1,17 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="home.aspx.cs" Inherits="saassecurity.home" %>
-
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div style="height: 388px">
-        </div>
-    </form>
-</body>
-</html>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="home.aspx.cs" Inherits="saassecurity.home" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:Panel ID="Panel1" runat="server" Height="180px">
+        <asp:Button ID="btnAddEmp" runat="server" OnClick="btnAddEmp_Click" Text="Add Employee" />
+        <br />
+        <br />
+        <asp:Button ID="btnAddAvail" runat="server" OnClick="btnAddAvail_Click" Text="Add Employee Availability" />
+        <br />
+        <br />
+        <asp:Button ID="btnAddSite" runat="server" OnClick="btnAddSite_Click" Text="Add Site" />
+        <br />
+        <br />
+    </asp:Panel>
+    <br />
+</asp:Content>

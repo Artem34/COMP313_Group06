@@ -13,10 +13,14 @@ namespace saassecurity
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.Master.WelcomeMessage = "Welcome, " + Session["empId"];
-
-            string connString = ConfigurationManager.ConnectionStrings["ScheduleDb"].ConnectionString;
-            SqlConnection conn = new SqlConnection(connString);
+            if (Session["empId"] != null)
+            {
+                this.Master.WelcomeMessage = "Welcome, " + Session["name"];
+            }
+            else
+            {
+                Response.Redirect("~/Login.aspx?logged=false");
+            }
         }
     }
 }

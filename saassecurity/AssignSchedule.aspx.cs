@@ -14,143 +14,203 @@ namespace saassecurity
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.Master.WelcomeMessage = "Welcome, " + Session["empId"];
+            if (Session["empId"] != null)
+            {
+                this.Master.WelcomeMessage = "Welcome, " + Session["name"];
+            }
+            else
+            {
+                Response.Redirect("~/Login.aspx?logged=false");
+            }
         }
 
         protected void btnStartSchedAssign_Click(object sender, EventArgs e)
         {
-            // =================================================
-            // Display all data
-            // =================================================
-            //var r1 = from employee in employees select employee;
-            //foreach (var employee in r1)
-            //    Console.WriteLine(employee);
-            // =================================================
-            // I want all employees available at site: Progress from: 10:00 to 15:00
-            // =================================================
-            // Should only get John cuz Denis is not available from 10am
-            //var r1 = from employee in employees where employee.Site == "Progress" && employee.StartTime <= 10 && employee.EndTime >= 15 select employee;
-            //foreach (var employee in r1)
-            //    Console.WriteLine(employee);
-            // =================================================
-            // Assign employees based on List<Slot> slots
-            // =================================================
-            var combo = from slot in slots
-                        from hour in hours
-                        join employee in employees on slot.Site equals employee.Site
-                        // where will link slot period of time to hours
-                        where (slot.StartTime <= hour.HourSlot && slot.EndTime >= hour.HourSlot)
-                        // here we filter employees that are available for each time slot selected above
-                        && (employee.StartTime <= hour.HourSlot && (employee.EndTime >= (hour.HourSlot + 1) && (hour.HourSlot + 1) <= slot.EndTime))
-                        select new { slot, hour, employee };
+            string connString = ConfigurationManager.ConnectionStrings["ScheduleDb"].ConnectionString;
+            SqlConnection conn = new SqlConnection(connString);
+            
+          
+                //find employees
+            string sqlemp = "select scheduleId,shiftDay, startTime, endTime,weekNum from schedule where empId is NULL";
+            SqlCommand cmd = new SqlCommand(sqlemp, conn);
 
-            foreach (var line in combo)
-            {
+            try{
+                conn.Open();
+                SqlDataReader reademp = cmd.ExecuteReader();
+                while (reademp.Read()) {
+                    int scheduleId = Convert.ToInt32(reademp[0].ToString());
+                    int shiftDay = Convert.ToInt32(reademp[1].ToString());
+                    int startTime = Convert.ToInt32(reademp[2].ToString());
+                    int endTime = Convert.ToInt32(reademp[3].ToString());
+                    int weekNum = Convert.ToInt32(reademp[4].ToString());
+                    string sqlsched = "select empId from availability where weekday= '"+shiftDay+"' and startTime <=" + startTime + "and endTime >= " + endTime;
 
-                //Console.WriteLine("{0} ({1}) {2}", line.hour.hourSlot, line.employee.Name, line.employee.Name.Count());
+                    SqlCommand com = new SqlCommand(sqlsched, conn);
+                    SqlDataReader avReader = com.ExecuteReader();
+                    string updateSql = "";
+                    Boolean flag = false;
+                    if (avReader.HasRows) {
+                        while (avReader.Read()) {
+                            int empId = Convert.ToInt32(avReader[0].ToString());
+                            string checksql = "select scheduleId from schedule where empId =" + empId +" and shiftDay=" + shiftDay + "and weekNum='"+weekNum+"';";
+                            SqlCommand checkcmd = new SqlCommand(checksql, conn);
+                            //If no other shift assigned for that day
+                            if (checkcmd.ExecuteScalar() == null) {
+                                //If total hours not exceeded
+                                flag = true;
+                                //assign shift
+                                updateSql += "Update schedule set empId =" + empId + " where scheduleId=" + scheduleId;
+                                break;
+                                /*int shiftHours = endTime - startTime;
+                                //Increase Hours
+                                SqlCommand hourcmd = new SqlCommand("select e.hours, h.tothours from employees e, empHours h where e.empId = h.empId and e.empId =" + empId + "and h.weekNum=" + weekNum, conn);
 
-                Console.WriteLine(line.slot + " " + line.hour + " " + line.employee);
+                                SqlDataReader redd = hourcmd.ExecuteReader();
+                                if (redd.HasRows)
+                                {
+                                    while (redd.Read()) {
+                                        int maxHours = Convert.ToInt32(redd[0].ToString());
+                                        int currHours = Convert.ToInt32(redd[1].ToString());
+                                        int tothours = currHours + shiftHours;
+                                        if (tothours <= maxHours)
+                                        {
+                                            flag = true;
+                                            //assign shift
+                                            updateSql += "Update schedule set empId =" + empId + " where scheduleId=" + scheduleId;
+                                            string hoursql = "update empHours set totHours = " + tothours + " where empId=" + empId + "and weekNum=" + weekNum;
+
+                                            SqlCommand updHour = new SqlCommand(hoursql, conn);
+                                            updHour.ExecuteNonQuery();
+                                            break;
+                                        }
+                                    }
+                                   
+                                }
+                                else {
+                                    flag = true;
+                                    //assign shift
+                                    int tothours = shiftHours;
+                                    updateSql += "Update schedule set empId =" + empId + " where scheduleId=" + scheduleId;
+                                    string hoursql = "insert into empHours(empId, weekNum, totHours) values('"+empId+"','"+weekNum+"', '"+tothours+"')";
+                                    SqlCommand updHour = new SqlCommand(hoursql, conn);
+                                    updHour.ExecuteNonQuery();
+
+                                    break;
+                                }
+                                */
+                              
+                            }
+                        }
+                        if (flag) {
+                            SqlCommand updateCmd = new SqlCommand(updateSql, conn);
+
+                            updateCmd.ExecuteNonQuery();
+
+                        }
+                        
+                    }
+                }
+                lblErrorMsg.Text = "Schedule assigned successfully!";
             }
 
-
-            // Exit
-            Console.WriteLine("\n\nPress any key to exit...");
-            Console.ReadKey();
-        }
-
-        /// <summary>
-        /// Fake list of employee data
-        /// </summary>
-        static List<Employee> employees = new List<Employee>()
-        {
-            new Employee(){ Name="John", Site="Progress", StartTime=9, EndTime=17},
-            new Employee(){ Name="Elton", Site="Ashtonbee", StartTime=9, EndTime=17},
-            new Employee(){ Name="Denis", Site="Progress", StartTime=12, EndTime=20},
-            new Employee(){ Name="Bane", Site="Progress", StartTime=17, EndTime=23},
-        };
-
-        /// <summary>
-        /// Employee information
-        /// </summary>
-        class Employee
-        {
-            public string Name { get; set; }
-            public string Site { get; set; }
-            public int StartTime { get; set; }
-            public int EndTime { get; set; }
-
-            public override string ToString()
+            catch (SqlException ex)
             {
-                return string.Format("\tName: {0} \tSite: {1}  From: {2}  to: {3}", Name, Site, StartTime, EndTime);
+
+                lblErrorMsg.Text = ex.ToString();
             }
-        }
-
-        /// <summary>
-        /// Fake list of available slots
-        /// </summary>
-        static List<Slot> slots = new List<Slot>()
-        {
-            new Slot(){Site="Progress", StartTime=8, EndTime=15},
-            new Slot(){Site="Ashtonbee", StartTime=12, EndTime=18}
-        };
-
-        /// <summary>
-        /// Slots information
-        /// </summary>
-        class Slot
-        {
-            public string Site { get; set; }
-            public int StartTime { get; set; }
-            public int EndTime { get; set; }
-
-            public override string ToString()
+            finally
             {
-                return string.Format("Site: {0}  \tFrom: {1}  to: {2}", Site, StartTime, EndTime);
+                conn.Close();
             }
-        }
+            /*string connString = ConfigurationManager.ConnectionStrings["ScheduleDb"].ConnectionString;
+            SqlConnection conn = new SqlConnection(connString);
 
-        /// <summary>
-        /// Fake list of hours
-        /// </summary>
-        static List<Hour> hours = new List<Hour>()
-        {
-            new Hour(){HourSlot=1},
-            new Hour(){HourSlot=2},
-            new Hour(){HourSlot=3},
-            new Hour(){HourSlot=4},
-            new Hour(){HourSlot=5},
-            new Hour(){HourSlot=6},
-            new Hour(){HourSlot=7},
-            new Hour(){HourSlot=8},
-            new Hour(){HourSlot=9},
-            new Hour(){HourSlot=10},
-            new Hour(){HourSlot=11},
-            new Hour(){HourSlot=12},
-            new Hour(){HourSlot=13},
-            new Hour(){HourSlot=14},
-            new Hour(){HourSlot=15},
-            new Hour(){HourSlot=16},
-            new Hour(){HourSlot=17},
-            new Hour(){HourSlot=18},
-            new Hour(){HourSlot=19},
-            new Hour(){HourSlot=20},
-            new Hour(){HourSlot=21},
-            new Hour(){HourSlot=22},
-            new Hour(){HourSlot=23},
-            new Hour(){HourSlot=24},
-        };
+            SqlCommand comm = new SqlCommand("insertEmployersSchedule", conn);
+            comm.CommandType = CommandType.StoredProcedure;
 
-        /// <summary>
-        /// List of 24h slots
-        /// </summary>
-        class Hour
-        {
-            public int HourSlot { get; set; }
-
-            public override string ToString()
+            try
             {
-                return string.Format("\tHourSlot: {0} ", HourSlot);
+                conn.Open();
+                comm.ExecuteNonQuery();
+
+                lblErrorMsg.Text = "Scheduler started successfully!";
+
+
             }
+            catch (SqlException ex)
+            {
+
+                lblErrorMsg.Text = ex.ToString();
+            }
+            finally
+            {
+                conn.Close();
+            }*/
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            string connString = ConfigurationManager.ConnectionStrings["ScheduleDb"].ConnectionString;
+            SqlConnection conn = new SqlConnection(connString);
+
+            string sql1 = "select s.siteId, s.weekday, s.startTime, s.endTime from SiteShifts s";
+
+            string datesSql = "SELECT datepart(wk, getdate()+1) as CurrentWeek, DATEADD(DAY, nbr -1, dateadd(day, 1-datepart(dw, getdate()+1), CONVERT(date,getdate()+1))) as CurrentWeekDates FROM(SELECT ROW_NUMBER() OVER(ORDER BY c.object_id) AS Nbr FROM sys.columns c) nbrs WHERE nbr - 1 <= DATEDIFF(DAY, dateadd(day, 1 - datepart(dw, getdate()+1), CONVERT(date, getdate()+1)), dateadd(day, 7 - datepart(dw, getdate()+1), CONVERT(date, getdate()+1)));";
+
+            SqlCommand comm1 = new SqlCommand(sql1, conn);
+            SqlCommand dateCmd = new SqlCommand(datesSql, conn);
+            String[] dates = new String[8];
+            try
+            {
+                conn.Open();
+                SqlDataReader readerDates = dateCmd.ExecuteReader();
+                int index = 1;
+                int currentweek = 0;
+                while (readerDates.Read())
+                {
+                    currentweek = Convert.ToInt32(readerDates[0].ToString());
+                    dates[index] = readerDates[1].ToString();
+
+                    index++;
+                }
+                string sql = "";
+
+                int i = 0;
+                HashSet<int> siteList = new HashSet<int>();
+                using (SqlDataReader reader = comm1.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        i++;
+                        int siteId = Convert.ToInt32(reader[0].ToString());
+                        int weekday = Convert.ToInt32(reader[1].ToString());
+                        int startTime = Convert.ToInt32(reader[2].ToString());
+                        int endTime = Convert.ToInt32(reader[3].ToString());
+
+                        sql += "insert into schedule(siteId, shiftDate,shiftDay,startTime, endTime,weekNum) " +
+                            "values('" + siteId + "', '" + dates[weekday] + "','" + weekday + "','" + startTime + "','" + endTime + "','" + currentweek + "');";
+                        siteList.Add(siteId);
+                    }
+                    SqlCommand sqlcomd = new SqlCommand(sql, conn);
+                    sqlcomd.ExecuteNonQuery();
+
+                    string sqlStatus = "";
+                    foreach (int siteId in siteList) {
+                        sqlStatus += "Insert into scheduleWeek values('" + siteId + "','" + currentweek + "');";
+                    }
+                    SqlCommand statusCmd = new SqlCommand(sqlStatus, conn);
+                    statusCmd.ExecuteNonQuery();
+                }
+
+                lblErrorMsg.Text = "Schedule created successfully!";
+            }
+            catch (SqlException ex)
+            {
+                lblErrorMsg.Text = ex.ToString();
+            }
+            finally {
+                conn.Close();
+            }
+    }
     }
 }

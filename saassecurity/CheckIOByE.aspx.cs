@@ -5,19 +5,21 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using System.Configuration;
 
 
 namespace saassecurity
 {
     public partial class WebForm2 : System.Web.UI.Page
     {
-        private SqlConnection sqlconnection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=sec;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+        string connString = ConfigurationManager.ConnectionStrings["ScheduleDb"].ConnectionString;
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
             txtempid.Text = Convert.ToString(Session["empId"]);
-
+            SqlConnection sqlconnection = new SqlConnection(connString);
             SqlCommand comm = new SqlCommand("select (siteId,shiftDate,startTime,endTime,checkInStatus) from schedule where (empId = @empid)", sqlconnection);
             comm.Parameters.AddWithValue("@empId", Convert.ToString(Session["empId"]));
             

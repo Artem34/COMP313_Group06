@@ -70,9 +70,11 @@
     <Content Include="AddSite.aspx" />
     <Content Include="AssignSchedule.aspx" />
     <Content Include="CheckIOByE.aspx" />
+    <Content Include="ForgotPassword.aspx" />
     <Content Include="home.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="MasterPage.Master" />
+    <Content Include="NavigationData.xml" />
     <Content Include="NavigationMaster.Master" />
     <None Include="packages.config" />
     <Content Include="images\logo.png" />
@@ -86,10 +88,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AddandUpdateAvailability.aspx" />
+    <Content Include="SiteDetails.aspx" />
+    <Content Include="SiteShiftsUserControl.ascx" />
     <Content Include="sql\create.sql" />
     <Content Include="sql\insert.sql" />
+    <Content Include="ViewCheckInByS.aspx" />
+    <Content Include="ViewEmployee.aspx" />
+    <Content Include="ViewEmployeeDetail.aspx" />
     <Content Include="ViewScheduleByE.aspx" />
     <Content Include="ViewSchedulebyS.aspx" />
+    <Content Include="ViewSites.aspx" />
+    <Content Include="ViewUpdateProfile.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +138,13 @@
       <DependentUpon>CheckIOByE.aspx</DependentUpon>
     </Compile>
     <Compile Include="DaysWeek.cs" />
+    <Compile Include="ForgotPassword.aspx.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForgotPassword.aspx.designer.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="home.aspx.cs">
       <DependentUpon>home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -165,7 +181,42 @@
     <Compile Include="Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
     </Compile>
+    <Compile Include="SiteDetails.aspx.cs">
+      <DependentUpon>SiteDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SiteDetails.aspx.designer.cs">
+      <DependentUpon>SiteDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SiteShiftsUserControl.ascx.cs">
+      <DependentUpon>SiteShiftsUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SiteShiftsUserControl.ascx.designer.cs">
+      <DependentUpon>SiteShiftsUserControl.ascx</DependentUpon>
+    </Compile>
     <Compile Include="TimeHours.cs" />
+    <Compile Include="ViewCheckInByS.aspx.cs">
+      <DependentUpon>ViewCheckInByS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewCheckInByS.aspx.designer.cs">
+      <DependentUpon>ViewCheckInByS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewEmployee.aspx.cs">
+      <DependentUpon>ViewEmployee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewEmployee.aspx.designer.cs">
+      <DependentUpon>ViewEmployee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewEmployeeDetail.aspx.cs">
+      <DependentUpon>ViewEmployeeDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewEmployeeDetail.aspx.designer.cs">
+      <DependentUpon>ViewEmployeeDetail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewScheduleByE.aspx.cs">
       <DependentUpon>ViewScheduleByE.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -179,6 +230,20 @@
     </Compile>
     <Compile Include="ViewSchedulebyS.aspx.designer.cs">
       <DependentUpon>ViewSchedulebyS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewSites.aspx.cs">
+      <DependentUpon>ViewSites.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewSites.aspx.designer.cs">
+      <DependentUpon>ViewSites.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewUpdateProfile.aspx.cs">
+      <DependentUpon>ViewUpdateProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewUpdateProfile.aspx.designer.cs">
+      <DependentUpon>ViewUpdateProfile.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />

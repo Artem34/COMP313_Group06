@@ -16,7 +16,8 @@ email varchar(30) unique not null,
 contactNum int unique not null,
 userId varchar(20) unique,
 dot date,
-status char(2)
+status char(2),
+hours int
 )
 
 create table sites
@@ -32,7 +33,7 @@ create table availability
 (
 id int identity primary key,
 empId int not null,
-days varchar(100),
+weekday varchar(100),
 startTime int,
 endTime int
 )
@@ -45,13 +46,15 @@ shiftDay varchar(10) not null,
 startTime int not null,
 endTime int not null,
 empId int not null,
-checkInStatus char(10)
+checkInStatus char(10),
+checkInTime varchar(50),
+weekNum int
 )
 
 create table SiteShifts(
 id int identity primary key,
 siteId int not null,
-day varchar(5),
+weekday varchar(5),
 startTime int,
 endTime int
 )

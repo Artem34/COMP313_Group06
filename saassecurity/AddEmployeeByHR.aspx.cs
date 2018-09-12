@@ -15,8 +15,9 @@ namespace saassecurity
         string connString = ConfigurationManager.ConnectionStrings["ScheduleDb"].ConnectionString;
         
 
-        private String fname, lname, email, phn, address, username,password,cpassword,dbrth;
+        private String fname, lname, email, phn, address, username,password,cpassword,dbrth, role,status;
 
+        
         protected void btncancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("home.aspx");
@@ -25,62 +26,83 @@ namespace saassecurity
         
         protected void btnadd_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection(connString);
-
-            SqlCommand sqlcommand;
-            fname = txtfName.Text.ToString();
-            lname = txtlName.Text.ToString();
-            email = txtemail.Text.ToString();
-            phn = txtphn.Text.ToString();
-            address = txtaddress.Text.ToString();
-            username = txtuser.Text.ToString();
-            password = txtpwd.Text.ToString();
-            cpassword = txtcpwd.Text.ToString();
-            dbrth =  txtdate.Text.ToString();
-            DateTime dbirth = DateTime.Parse(dbrth);
-
-            string insertEmp = "INSERT INTO employees(firstName,lastName,dob,address,email,contactNum,userId) VALUES(@firstName,@lastName,@dob,@address,@email,@contactNum,@userId);"
-                            +"SELECT CAST(scope_identity() AS int)";
-            sqlcommand = new SqlCommand(insertEmp, conn);
-            sqlcommand.Parameters.AddWithValue("@firstName", fname);
-            sqlcommand.Parameters.AddWithValue("@lastName", lname);
-            sqlcommand.Parameters.AddWithValue("@dob", dbirth);
-            sqlcommand.Parameters.AddWithValue("@address", address);
-            sqlcommand.Parameters.AddWithValue("@email", email);
-            sqlcommand.Parameters.AddWithValue("@contactNum", phn);
-            sqlcommand.Parameters.AddWithValue("@userId", username);
-
-            try
+            if (txtpwd.Text == txtcpwd.Text)
             {
+                SqlConnection conn = new SqlConnection(connString);
 
-                conn.Open();
-                int empId = Convert.ToInt32(sqlcommand.ExecuteScalar());
+                SqlCommand sqlcommand;
+                fname = txtfName.Text.ToString();
+                lname = txtlName.Text.ToString();
+                email = txtemail.Text.ToString();
+                phn = txtphn.Text.ToString();
+                address = txtaddress.Text.ToString();
+                username = txtuser.Text.ToString();
+                password = txtpwd.Text.ToString();
+                cpassword = txtcpwd.Text.ToString();
+                dbrth = txtdate.Text.ToString();                
+                role = drpRole.SelectedValue;
+                status = statusRadio.SelectedValue;
 
-                string insertUser = "INSERT INTO users(userId,password,role, empId) VALUES(@userId,@password,@role,@empId)";
-
-                sqlcommand = new SqlCommand(insertUser, conn);
+                string insertEmp = "INSERT INTO employees(firstName,lastName,dob,address,email,contactNum,userId,hours) VALUES(@firstName,@lastName,@dob,@address,@email,@contactNum,@userId,@hours);"
+                                + "SELECT CAST(scope_identity() AS int)";
+                sqlcommand = new SqlCommand(insertEmp, conn);
+                sqlcommand.Parameters.AddWithValue("@firstName", fname);
+                sqlcommand.Parameters.AddWithValue("@lastName", lname);
+                sqlcommand.Parameters.AddWithValue("@dob", dbrth);
+                sqlcommand.Parameters.AddWithValue("@address", address);
+                sqlcommand.Parameters.AddWithValue("@email", email);
+                sqlcommand.Parameters.AddWithValue("@contactNum", phn);
                 sqlcommand.Parameters.AddWithValue("@userId", username);
-                sqlcommand.Parameters.AddWithValue("@password", password);
-                sqlcommand.Parameters.AddWithValue("@role", "emp");
-                sqlcommand.Parameters.AddWithValue("@empId", empId);
+                sqlcommand.Parameters.AddWithValue("@hours", status);
 
-                sqlcommand.ExecuteNonQuery();
+                try
+                {
 
-                lblErrorMsg.Text = "Employee Added Successfully!";
+                    conn.Open();
+                    int empId = Convert.ToInt32(sqlcommand.ExecuteScalar());
+
+                    string insertUser = "INSERT INTO users(userId,password,role, empId) VALUES(@userId,@password,@role,@empId)";
+
+                    sqlcommand = new SqlCommand(insertUser, conn);
+                    sqlcommand.Parameters.AddWithValue("@userId", username);
+                    sqlcommand.Parameters.AddWithValue("@password", password);
+                    sqlcommand.Parameters.AddWithValue("@role", role);
+                    sqlcommand.Parameters.AddWithValue("@empId", empId);
+
+                    sqlcommand.ExecuteNonQuery();
+
+                    string insertHour = "insert into empHours values(@empId,0,0)";
+                    SqlCommand cmd = new SqlCommand(insertHour,conn);
+                    cmd.Parameters.AddWithValue("@empId", empId);
+                    cmd.ExecuteNonQuery();
+
+                    lblErrorMsg.Text = "Employee Added Successfully!";
+                }
+                catch (SqlException ex)
+                {
+                    lblErrorMsg.Text = ex.ToString();
+                }
+                finally
+                {
+                    conn.Close();
+                }
             }
-            catch (SqlException ex)
-            {
-                lblErrorMsg.Text = ex.ToString();
-            }
-            finally {
-                conn.Close();
+            else {
+                lblErrorMsg.Text = "Passwords do not match!";
             }
 
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.Master.WelcomeMessage = "Welcome, " + Session["empId"];
+            if (Session["empId"] != null)
+            {
+                this.Master.WelcomeMessage = "Welcome, " + Session["name"];
+            }
+            else
+            {
+                Response.Redirect("~/Login.aspx?logged=false");
+            }
         }
     }
 }

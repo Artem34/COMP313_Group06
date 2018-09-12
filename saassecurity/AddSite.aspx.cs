@@ -14,7 +14,16 @@ namespace saassecurity
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.Master.WelcomeMessage = "Welcome, " + Session["empId"];
+            if (Session["empId"] != null)
+            {
+                this.Master.WelcomeMessage = "Welcome, " + Session["name"];
+            }
+            else
+            {
+                Response.Redirect("~/Login.aspx?logged=false");
+            }
+
+            
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -30,55 +39,55 @@ namespace saassecurity
             Boolean shiftFri = chkFriday.Checked;
             Boolean shiftSat = chkSaturday.Checked;
             Boolean shiftSun = chkSunday.Checked;
-            var daysMap = new Dictionary<String, List<String>>();
+            var daysMap = new Dictionary<int, List<String>>();
 
             if (shiftMon) {
                 String startMon = startTimeMonday.SelectedItem.Text;
                 String endMon = endTimeMonday.SelectedItem.Text;
 
-                daysMap.Add("Mon", new List<String> { startMon, endMon });             
+                daysMap.Add(2, new List<String> { startMon, endMon });             
             }
             if (shiftTue)
             {
                 String startTue = startTimeTuesday.SelectedItem.Text;
                 String endTue = endTimeTuesday.SelectedItem.Text;
 
-                daysMap.Add("Tue", new List<String> { startTue, endTue });
+                daysMap.Add(3, new List<String> { startTue, endTue });
             }
             if (shiftWed)
             {
                 String startWed = startTimeWednesday.SelectedItem.Text;
                 String endWed = endTimeWednesday.SelectedItem.Text;
 
-                daysMap.Add("Wed", new List<String> { startWed, endWed });
+                daysMap.Add(4, new List<String> { startWed, endWed });
             }
             if (shiftThu)
             {
                 String startThu = startTimeThursday.SelectedItem.Text;
                 String endThu = endTimeThursday.SelectedItem.Text;
 
-                daysMap.Add("Thu", new List<String> { startThu, endThu });
+                daysMap.Add(5, new List<String> { startThu, endThu });
             }
             if (shiftFri)
             {
                 String startFri = startTimeFriday.SelectedItem.Text;
                 String endFri = endTimeFriday.SelectedItem.Text;
 
-                daysMap.Add("Fri", new List<String> { startFri, endFri });
+                daysMap.Add(6, new List<String> { startFri, endFri });
             }
             if (shiftSat)
             {
                 String startSat = startTimeSaturday.SelectedItem.Text;
                 String endSat = endTimeSaturday.SelectedItem.Text;
 
-                daysMap.Add("Sat", new List<String> { startSat, endSat });
+                daysMap.Add(7, new List<String> { startSat, endSat });
             }
             if (shiftSun)
             {
                 String startSun = startTimeSunday.SelectedItem.Text;
                 String endSun = endTimeSunday.SelectedItem.Text;
 
-                daysMap.Add("Sun", new List<String> { startSun, endSun });
+                daysMap.Add(1, new List<String> { startSun, endSun });
             }
 
             string connString = ConfigurationManager.ConnectionStrings["ScheduleDb"].ConnectionString;
@@ -95,7 +104,7 @@ namespace saassecurity
 
                 foreach (var item in daysMap)
                 {
-                    comm2Query += "insert into SiteShifts(siteId, day, startTime, endTime) " +
+                    comm2Query += "insert into SiteShifts(siteId, weekday, startTime, endTime) " +
                         "values('"+id+"','"+ item.Key +"','"+ item.Value[0]+"','" +item.Value[1]+"');";
                 }
 

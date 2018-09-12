@@ -5,9 +5,6 @@
         .auto-style3 {
             margin-left: 112px;
         }
-        .auto-style4 {
-            width: 113px;
-        }
         .auto-style5 {
             width: 176px;
         }
@@ -28,7 +25,8 @@
         .auto-style11 {
             width: 113px;
             height: 30px;
-        }
+        text-align: left;
+    }
         .auto-style12 {
             width: 163px;
             height: 30px;
@@ -37,6 +35,13 @@
             width: 176px;
             height: 30px;
         }
+        .auto-style14 {
+            text-align: center;
+        }
+    .auto-style15 {
+        width: 113px;
+        text-align: left;
+    }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -47,13 +52,19 @@
 
 <body>
     
-        <div>
+        <div class="auto-style14">
            
-           <asp:Label ID="Label1" runat="server" Text="Availability for Current Schedule:" Font-Bold="True" Font-Italic="True" Font-Size="X-Large" Font-Underline="True"></asp:Label>
+            <div class="auto-style14">
+           
+           <asp:Label ID="Label1" runat="server" Text="Availability for Current Schedule:" Font-Bold="False" Font-Italic="False" Font-Size="Large" Font-Underline="False" style=""></asp:Label>
+
+                <br />
 
             <br />
 
-            <table>
+            </div>
+            <div></div>
+            <table  align="center">
                 <tr>
                     <td class="auto-style11">
                         <asp:CheckBox ID="chkMon" runat="server" Text="Monday" />
@@ -71,7 +82,7 @@
                         </asp:DropDownList></td>
                 </tr>
                 <tr>
-                    <td class="auto-style4">
+                    <td class="auto-style15">
                         <asp:CheckBox ID="chkTue" runat="server" Text="Tuesday" />
                     </td>
                     
@@ -84,7 +95,7 @@
                         <asp:DropDownList ID="endTue" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Width="64px"></asp:DropDownList></td>
                 </tr>
                 <tr>
-                    <td class="auto-style4">
+                    <td class="auto-style15">
                         <asp:CheckBox ID="chkWed" runat="server" Text="Wednesday" />
                     </td>
                    
@@ -97,7 +108,7 @@
                         <asp:DropDownList ID="endWed" runat="server" CssClass="auto-style8" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Width="64px"></asp:DropDownList></td>
                 </tr>
                 <tr>
-                    <td class="auto-style4">
+                    <td class="auto-style15">
                         <asp:CheckBox ID="chkThu" runat="server" Text="Thursday" />
                     </td>
                     
@@ -110,7 +121,7 @@
                         <asp:DropDownList ID="endThu" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Width="64px"></asp:DropDownList></td>
                 </tr>
                 <tr>
-                    <td class="auto-style4">
+                    <td class="auto-style15">
                         <asp:CheckBox ID="chkFri" runat="server" Text="Friday" />
                     </td>
                     
@@ -123,7 +134,7 @@
                         <asp:DropDownList ID="endFri" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Width="64px"></asp:DropDownList></td>
                 </tr>
                 <tr>
-                    <td class="auto-style4">
+                    <td class="auto-style15">
                         <asp:CheckBox ID="chkSat" runat="server" Text="Saturday" />
                     </td>
                   
@@ -136,7 +147,7 @@
                         <asp:DropDownList ID="endSat" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Width="64px"></asp:DropDownList></td>
                 </tr>
                 <tr>
-                    <td class="auto-style4">
+                    <td class="auto-style15">
                         <asp:CheckBox ID="chkSun" runat="server" Text="Sunday" />
                     </td>
                     

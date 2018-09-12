@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<user role="admin">
+  <nav id= "home">
+    <Text>Home</Text>
+    <Value>Home</Value>
+    <Target-Url>"~/Home.aspx"</Target-Url>
+  </nav>
+</user>

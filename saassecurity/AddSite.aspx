@@ -5,32 +5,43 @@
         .auto-style3 {
             margin-left: 112px;
         }
-    </style>
+        .auto-style4 {
+            text-align: center;
+        }
+        </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     
-        Add Site Information<br />
+        <asp:Panel ID="Panel1" runat="server">
+            <div class="auto-style4">
+                Add Site Information<br /> <br />
+                <asp:Label ID="lblErrorMsg" runat="server" ForeColor="Red"></asp:Label>
+            </div>
+        </asp:Panel>
         <br />
-        Site Name:&nbsp;
+    <div align="center" >
+        <div class="auto-style4">
+        &nbsp;Site Name :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="txtSiteName" runat="server"></asp:TextBox>
         <br />
-        <br />
-        Address:&nbsp;&nbsp;&nbsp;&nbsp;
+            Address :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="txtAddress" runat="server"></asp:TextBox>
         <br />
-        <br />
-        Contact Person:
+        Contact Person:&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="txtContactPerson" runat="server"></asp:TextBox>
         <br />
-        <br />
-        Contact Number:
-        <asp:TextBox ID="txtContactNum" runat="server"></asp:TextBox>
+        Contact Number:&nbsp;&nbsp;
+        <asp:TextBox ID="txtContactNum" runat="server" TextMode="Number"></asp:TextBox>
         <br />
         <br />
         Schedule:
         <br />
         &nbsp;
+    
+       
+    
+        </div>
     
        
     
@@ -108,7 +119,7 @@
             </asp:TableRow>
 
             <asp:TableRow>
-                <asp:TableCell>
+                <asp:TableCell >
                      <asp:CheckBox ID="chkSunday" runat="server" Text="Sunday" />
                 </asp:TableCell>
                 <asp:TableCell>                    
@@ -121,16 +132,21 @@
         </asp:Table>
         
 
+        <div class="auto-style4">
+        
+
         <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Save Site Details" />
         
 
         <br />
         <br />
-        <asp:Label ID="lblErrorMsg" runat="server"></asp:Label>
         <br />
         
-
+        </div>
+        
+    </div>
         <asp:ObjectDataSource ID="DaysWeekDataSource" runat="server" SelectMethod="getDaysWeek" TypeName="saassecurity.DaysWeek"></asp:ObjectDataSource>
        
 

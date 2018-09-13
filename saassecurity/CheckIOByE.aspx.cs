@@ -17,11 +17,11 @@ namespace saassecurity
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            txtempid.Text = Convert.ToString(Session["empId"]);
+            String id = Convert.ToString(Session["empId"]);
+            txtempid.Text = id;
             SqlConnection sqlconnection = new SqlConnection(connString);
-            SqlCommand comm = new SqlCommand("select (siteId,shiftDate,startTime,endTime,checkInStatus) from schedule where (empId = @empid)", sqlconnection);
-            comm.Parameters.AddWithValue("@empId", Convert.ToString(Session["empId"]));
+            SqlCommand comm = new SqlCommand("select siteId,shiftDate,startTime,endTime,checkInStatus from schedule where (empId = @empid)", sqlconnection);
+            comm.Parameters.AddWithValue("@empId", id);
             
 
             sqlconnection.Open();

@@ -194,12 +194,12 @@ namespace saassecurity
                     SqlCommand sqlcomd = new SqlCommand(sql, conn);
                     sqlcomd.ExecuteNonQuery();
 
-                    string sqlStatus = "";
+                  /*  string sqlStatus = "";
                     foreach (int siteId in siteList) {
                         sqlStatus += "Insert into scheduleWeek values('" + siteId + "','" + currentweek + "');";
                     }
                     SqlCommand statusCmd = new SqlCommand(sqlStatus, conn);
-                    statusCmd.ExecuteNonQuery();
+                    statusCmd.ExecuteNonQuery();*/
                 }
 
                 lblErrorMsg.Text = "Schedule created successfully!";

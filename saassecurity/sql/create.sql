@@ -45,7 +45,7 @@ shiftDate date not null,
 shiftDay varchar(10) not null,
 startTime int not null,
 endTime int not null,
-empId int not null,
+empId int,
 checkInStatus char(10),
 checkInTime varchar(50),
 weekNum int
@@ -58,3 +58,10 @@ weekday varchar(5),
 startTime int,
 endTime int
 )
+
+create table navigationmenu(
+menuText varchar(20),
+menuLoc varchar(50),
+role varchar(10)
+)
+

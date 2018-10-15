@@ -19,17 +19,31 @@
 .form-signin .form-control:focus {
   z-index: 2;
 }
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+
+
     </style>
     
 </asp:Content>
 <asp:Content ID="Content2" CssClass="text-center" ContentPlaceHolderID="ContentPlaceHolder1" runat="server" >
     <asp:Panel ID="Panel1" runat="server" CssClass="text-center" >
-
         <span style="color: #0000FF; font-size: 22px; font-weight: normal; font-family: Arial, Helvetica, sans-serif">Welcome to Saas Security Services</span><br />
+       <form name="login" class="form-signin">
         <br />
-        <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+
+        
+        <h2 class="h3 mb-3 font-weight-normal">Login</h2>
       
         <asp:Label ID="lblErrorMsg" runat="server" ForeColor="Red"></asp:Label>
+       
       
         <label >User Name:
         <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" Width="137px"></asp:TextBox>
@@ -47,6 +61,7 @@
         <br />
         <br />
         <br />
+           </form>
     <br />
     <br />
 </asp:Panel>

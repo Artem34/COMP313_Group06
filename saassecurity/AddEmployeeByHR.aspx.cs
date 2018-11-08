@@ -15,7 +15,7 @@ namespace saassecurity
         string connString = ConfigurationManager.ConnectionStrings["ScheduleDb"].ConnectionString;
         
 
-        private String fname, lname, email, phn, address, username,password,cpassword,dbrth, role,status;
+        private String fname, lname, email, phn, address, username,password,cpassword,dbrth, role,status, hours;
 
         
         protected void btncancel_Click(object sender, EventArgs e)
@@ -41,9 +41,10 @@ namespace saassecurity
                 cpassword = txtcpwd.Text.ToString();
                 dbrth = txtdate.Text.ToString();                
                 role = drpRole.SelectedValue;
-                status = statusRadio.SelectedValue;
+                hours = statusRadio.SelectedValue;
+                status = statusRadio.SelectedItem.ToString();
 
-                string insertEmp = "INSERT INTO employees(firstName,lastName,dob,address,email,contactNum,userId,hours) VALUES(@firstName,@lastName,@dob,@address,@email,@contactNum,@userId,@hours);"
+                string insertEmp = "INSERT INTO employees(firstName,lastName,dob,address,email,contactNum,userId,hours, status) VALUES(@firstName,@lastName,@dob,@address,@email,@contactNum,@userId,@hours, @status);"
                                 + "SELECT CAST(scope_identity() AS int)";
                 sqlcommand = new SqlCommand(insertEmp, conn);
                 sqlcommand.Parameters.AddWithValue("@firstName", fname);
@@ -53,7 +54,8 @@ namespace saassecurity
                 sqlcommand.Parameters.AddWithValue("@email", email);
                 sqlcommand.Parameters.AddWithValue("@contactNum", phn);
                 sqlcommand.Parameters.AddWithValue("@userId", username);
-                sqlcommand.Parameters.AddWithValue("@hours", status);
+                sqlcommand.Parameters.AddWithValue("@hours", hours);
+                sqlcommand.Parameters.AddWithValue("@status", status);
 
                 try
                 {
@@ -71,9 +73,10 @@ namespace saassecurity
 
                     sqlcommand.ExecuteNonQuery();
 
-                    string insertHour = "insert into empHours values(@empId,0,0)";
+                    string insertHour = "insert into empHours values(@empId,@totalHours,0)";
                     SqlCommand cmd = new SqlCommand(insertHour,conn);
                     cmd.Parameters.AddWithValue("@empId", empId);
+                    cmd.Parameters.AddWithValue("@totalHours", hours);
                     cmd.ExecuteNonQuery();
 
                     lblErrorMsg.Text = "Employee Added Successfully!";

@@ -2,9 +2,13 @@
 
 insert into users(userId, password, role, empId) values('kaur','1234','admin',(select empId from employees where userId = 'kaur'));
 
-insert into navigationmenu values('Add Availability','AddandUpdateAvailability.aspx', 'All');
-insert into navigationmenu values('Add Site','AddSite.aspx', 'All');
-insert into navigationmenu values('Add Employee','AddEmployeeByHR.aspx', 'All');
-insert into navigationmenu values('Assign Schedule','AssignSchedule.aspx', 'All');
-insert into navigationmenu values('View Schedule By Emp','ViewScheduleByE.aspx', 'All');
-insert into navigationmenu values('View Schedule By Sup','ViewScheduleByS.aspx', 'All');
+insert into navigationmenu values('Add Availability','AddandUpdateAvailability.aspx', 'Employee');
+insert into navigationmenu values('Add Site','AddSite.aspx', 'Admin');
+insert into navigationmenu values('Add Employee','AddEmployeeByHR.aspx', 'Admin');
+insert into navigationmenu values('Assign Schedule','AssignSchedule.aspx', 'Admin');
+insert into navigationmenu values('My Schedule','ViewScheduleByE.aspx', 'Employee');
+insert into navigationmenu values('View Schedules','ViewScheduleByS.aspx', 'Admin');
+insert into navigationmenu values('View Sites','ViewSites.aspx', 'Admin');
+insert into navigationmenu values('View Employees','ViewEmployee.aspx', 'Admin');
+insert into navigationmenu values('My Profile','ViewUpdateProfile.aspx', 'Employee');
+insert into navigationmenu values('View Availability','ViewEmpAvailability.aspx', 'Admin');

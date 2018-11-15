@@ -10,69 +10,96 @@
 namespace saassecurity {
     
     
-    public partial class ViewEmpAvailability {
+    public partial class CreateSchedule {
         
         /// <summary>
-        /// drpWeekDay control.
+        /// lblErrorMsg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drpWeekDay;
+        protected global::System.Web.UI.WebControls.Label lblErrorMsg;
         
         /// <summary>
-        /// drpStartTime control.
+        /// Panel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drpStartTime;
+        protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// drpEndTime control.
+        /// Panel2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drpEndTime;
+        protected global::System.Web.UI.WebControls.Panel Panel2;
         
         /// <summary>
-        /// btnSearch control.
+        /// tblSelection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearch;
+        protected global::System.Web.UI.WebControls.Table tblSelection;
         
         /// <summary>
-        /// GridView1 control.
+        /// drpSite control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.DropDownList drpSite;
         
         /// <summary>
-        /// SqlDataSource1 control.
+        /// txtFromDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtFromDate;
         
         /// <summary>
-        /// HoursDS control.
+        /// txtToDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource HoursDS;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtToDate;
+        
+        /// <summary>
+        /// btnCreateSched control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCreateSched;
+        
+        /// <summary>
+        /// SitesDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SitesDataSource;
+        
+        /// <summary>
+        /// gridSched control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gridSched;
     }
 }

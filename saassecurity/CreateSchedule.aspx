@@ -30,12 +30,13 @@
     </asp:Panel>
 
 
+    <asp:label runat="server" ID="labelMessage" />
 
-<asp:GridView ID="gridSched" runat="server" AutoGenerateColumns="False" ><Columns>
-        
-        <asp:BoundField DataField="weekday" HeaderText="weekday" SortExpression="weekday" />
-        <asp:BoundField DataField="startTime" HeaderText="startTime" SortExpression="startTime" />
-        <asp:BoundField DataField="endTime" HeaderText="endTime" SortExpression="endTime" />
+    <asp:GridView ID="gridSched" runat="server" AutoGenerateColumns="False" ><Columns>
+        <asp:BoundField DataField="shiftDate" HeaderText="Shift Date" SortExpression="shiftDate" />
+        <asp:BoundField DataField="day" HeaderText="Day" SortExpression="day" />
+        <asp:BoundField DataField="startTime" HeaderText="Start Time" SortExpression="startTime" />
+        <asp:BoundField DataField="endTime" HeaderText="End Time" SortExpression="endTime" />
 
     </Columns>
 

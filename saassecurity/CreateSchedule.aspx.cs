@@ -29,6 +29,7 @@ namespace saassecurity
         protected void btnCreateSched_Click(object sender, EventArgs e)
         {
             String site = drpSite.SelectedValue;
+            String siteName = drpSite.SelectedItem.ToString();
             String from = txtFromDate.Value;
             String to = txtToDate.Value;
 
@@ -54,16 +55,18 @@ namespace saassecurity
             {
                 conn.Open();
                 List<SiteShifts> listSiteShifts = new List<SiteShifts>();
-                
+                List<SiteShifts> listSchedule = new List<SiteShifts>();
+
                 SiteShifts siteShifts;
+                SiteShifts siteSched;
                 using (SqlDataReader reader = comm1.ExecuteReader()) {
                     while (reader.Read())
                     {
                         siteShifts = new SiteShifts();
-                        siteShifts.setSiteId(Convert.ToInt32(reader[0].ToString()));
-                        siteShifts.setWeekday(Convert.ToInt32(reader[1].ToString()));
-                        siteShifts.setStartTime(Convert.ToInt32(reader[2].ToString()));
-                        siteShifts.setEndTime(Convert.ToInt32(reader[3].ToString()));                        
+                        siteShifts.siteId = Convert.ToInt32(reader[0].ToString());
+                        siteShifts.weekday = Convert.ToInt32(reader[1].ToString());
+                        siteShifts.startTime = Convert.ToInt32(reader[2].ToString());
+                        siteShifts.endTime = Convert.ToInt32(reader[3].ToString());                        
 
                         listSiteShifts.Add(siteShifts);
                     }
@@ -77,11 +80,18 @@ namespace saassecurity
                     int day = (int)schedDate.DayOfWeek + 1;
 
                     for (int i = 0; i < listSiteShifts.Count; i++) {
-                        if (day == listSiteShifts[i].getWeekday()) {
-                            listSiteShifts[i].setShiftDate(schedDate.Date.ToShortDateString());
-                            insertSql += "if not exists(select scheduleId from schedule where siteId = '" + listSiteShifts[i].getSiteId() + "' and shiftDate='" + schedDate + "') ";
+                        if (day == listSiteShifts[i].weekday) {
+                            siteSched = new SiteShifts();
+                            siteSched.shiftDate = schedDate.Date.ToShortDateString();
+                            siteSched.day = schedDate.DayOfWeek.ToString();
+                            siteSched.startTime = listSiteShifts[i].startTime;
+                            siteSched.endTime = listSiteShifts[i].endTime;
+
+                            listSchedule.Add(siteSched);
+
+                            insertSql += "if not exists(select scheduleId from schedule where siteId = '" + listSiteShifts[i].siteId + "' and shiftDate='" + schedDate + "') ";
                             insertSql += "insert into schedule(siteId, shiftDate,shiftDay,startTime, endTime )" +
-                           "values('" + listSiteShifts[i].getSiteId() + "', '" + schedDate.Date + "','" + listSiteShifts[i].getWeekday() + "','" + listSiteShifts[i].getStartTime() + "','" + listSiteShifts[i].getEndTime() + "');";
+                           "values('" + listSiteShifts[i].siteId + "', '" + schedDate.Date + "','" + listSiteShifts[i].weekday + "','" + listSiteShifts[i].startTime + "','" + listSiteShifts[i].endTime + "');";
 
                         }
                     }
@@ -91,8 +101,8 @@ namespace saassecurity
 
                   
                 lblErrorMsg.Text = "Schedule created successfully!";
-
-                populateGrid(listSiteShifts);
+                labelMessage.Text = "Schedule created for <b>" + siteName + "</b> from <b>" + from + "</b> to <b>" + to + "</b> :";
+                populateGrid(listSchedule);
             }
             catch (SqlException ex)
             {
@@ -106,8 +116,8 @@ namespace saassecurity
         }
 
         protected void populateGrid(List<SiteShifts> sched) {
-           // gridSched.DataSource = sched;
-            //gridSched.DataBind();
+            gridSched.DataSource = sched;
+            gridSched.DataBind();
         }
     }
 }

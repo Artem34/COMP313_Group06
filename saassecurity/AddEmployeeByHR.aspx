@@ -30,6 +30,7 @@
                     </td>
                     <td>
                         <asp:TextBox ID="txtfName" runat="server" CssClass="auto-style4" Width="135px"></asp:TextBox>
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtfName" ErrorMessage="FirstName is required" ForeColor="Red"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
                  <tr>
@@ -38,6 +39,8 @@
                     </td>
                     <td>
                         <asp:TextBox ID="txtlName" runat="server" CssClass="auto-style4" Width="135px"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtlName" ErrorMessage="LastName is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                        
                     </td>
                 </tr>
                <tr>
@@ -46,6 +49,7 @@
                     </td>
                     <td>
                         <asp:TextBox ID="txtemail" runat="server" CssClass="auto-style4" TextMode="Email" Width="135px"></asp:TextBox>
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtemail" ErrorMessage="Email is required" ForeColor="Red"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -54,6 +58,7 @@
                     </td>
                     <td>
                         <asp:TextBox ID="txtdate" runat="server" CssClass="auto-style4" Width="135px"></asp:TextBox> (yyyy-mm-dd)
+                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtdate" ErrorMessage="DOB is required" ForeColor="Red"></asp:RequiredFieldValidator>
                     </td>
                    
                 </tr>
@@ -63,6 +68,7 @@
                     </td>
                     <td>
                         <asp:TextBox ID="txtphn" runat="server" CssClass="auto-style4" TextMode="Phone" Width="135px"></asp:TextBox>
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtphn" ErrorMessage="PhoneNum is required" ForeColor="Red"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -71,6 +77,7 @@
                     </td>
                     <td>
                         <asp:TextBox ID="txtaddress" runat="server" CssClass="auto-style4" TextMode="MultiLine" Width="135px"></asp:TextBox>
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtaddress" ErrorMessage="Address is required" ForeColor="Red"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -79,6 +86,7 @@
                     </td>
                     <td>
                         <asp:TextBox ID="txtuser" runat="server" CssClass="auto-style4" Width="135px"></asp:TextBox>
+                          <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtuser" ErrorMessage="Username is required" ForeColor="Red"></asp:RequiredFieldValidator>
                     </td></tr>
                     <tr>
                     <td>
@@ -86,6 +94,7 @@
                     </td>
                     <td>
                         <asp:TextBox ID="txtpwd" runat="server" CssClass="auto-style4" TextMode="Password" Width="135px"></asp:TextBox>
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtpwd" ErrorMessage="Password is required" ForeColor="Red"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 
@@ -95,6 +104,7 @@
                     </td>
                     <td>
                         <asp:TextBox ID="txtcpwd" runat="server" CssClass="auto-style4" TextMode="Password" Width="135px"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="txtcpwd" ErrorMessage="Password is required" ForeColor="Red"></asp:RequiredFieldValidator>
                     </td>
                 </tr>
 

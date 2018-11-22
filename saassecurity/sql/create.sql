@@ -68,7 +68,7 @@ role varchar(10)
 
 create table empHours(
 	empId int primary key,
-	totalHours int not null,
-	hoursDone int,
+	tothours int not null,
+	weekNum int,
 	foreign key (empId) references employees(empId) 
 );

@@ -28,21 +28,32 @@ namespace saassecurity
         {
             string connString = ConfigurationManager.ConnectionStrings["ScheduleDb"].ConnectionString;
             SqlConnection conn = new SqlConnection(connString);
-            
-          
-                //find employees
-            string sqlemp = "select scheduleId,shiftDay, startTime, endTime,weekNum from schedule where empId is NULL";
-            SqlCommand cmd = new SqlCommand(sqlemp, conn);
+
+            String sql;
+
+            SqlCommand cmd;
+
+            String value = drpSelectSite.SelectedValue;
+            if (value.Equals("0")) {
+                sql = "select scheduleId,shiftDate, shiftDay, startTime, endTime, weekNum from schedule where empId is NULL";
+                cmd = new SqlCommand(sql, conn);
+            }
+            else {
+                sql = "select scheduleId,shiftDate, shiftDay, startTime, endTime, weekNum from schedule where siteId = @siteId and empId is NULL";
+                cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@siteId", value);
+            }
 
             try{
                 conn.Open();
                 SqlDataReader reademp = cmd.ExecuteReader();
                 while (reademp.Read()) {
                     int scheduleId = Convert.ToInt32(reademp[0].ToString());
-                    int shiftDay = Convert.ToInt32(reademp[1].ToString());
-                    int startTime = Convert.ToInt32(reademp[2].ToString());
-                    int endTime = Convert.ToInt32(reademp[3].ToString());
-                    int weekNum = Convert.ToInt32(reademp[4].ToString());
+                    String shiftDate = reademp[1].ToString();
+                    int shiftDay = Convert.ToInt32(reademp[2].ToString());
+                    int startTime = Convert.ToInt32(reademp[3].ToString());
+                    int endTime = Convert.ToInt32(reademp[4].ToString());
+                    int weekNum = Convert.ToInt32(reademp[5].ToString());
                     string sqlsched = "select empId from availability where weekday= '"+shiftDay+"' and startTime <=" + startTime + "and endTime >= " + endTime;
 
                     SqlCommand com = new SqlCommand(sqlsched, conn);
@@ -52,16 +63,16 @@ namespace saassecurity
                     if (avReader.HasRows) {
                         while (avReader.Read()) {
                             int empId = Convert.ToInt32(avReader[0].ToString());
-                            string checksql = "select scheduleId from schedule where empId =" + empId +" and shiftDay=" + shiftDay + "and weekNum='"+weekNum+"';";
+                            string checksql = "select scheduleId from schedule where empId =" + empId +" and shiftDate='" + shiftDate + "';";
                             SqlCommand checkcmd = new SqlCommand(checksql, conn);
                             //If no other shift assigned for that day
                             if (checkcmd.ExecuteScalar() == null) {
                                 //If total hours not exceeded
-                                flag = true;
+                               /* flag = true;
                                 //assign shift
                                 updateSql += "Update schedule set empId =" + empId + " where scheduleId=" + scheduleId;
-                                break;
-                                /*int shiftHours = endTime - startTime;
+                                */
+                                int shiftHours = endTime - startTime;
                                 //Increase Hours
                                 SqlCommand hourcmd = new SqlCommand("select e.hours, h.tothours from employees e, empHours h where e.empId = h.empId and e.empId =" + empId + "and h.weekNum=" + weekNum, conn);
 
@@ -97,7 +108,7 @@ namespace saassecurity
 
                                     break;
                                 }
-                                */
+                                
                               
                             }
                         }
@@ -148,9 +159,6 @@ namespace saassecurity
             }*/
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-           
-    }
+      
     }
 }

@@ -38,7 +38,7 @@ namespace saassecurity
 
             string sql1 = "select s.siteId, s.weekday, s.startTime, s.endTime from SiteShifts s where s.siteId = @siteId";
 
-            string datesSql = "SELECT  TOP (DATEDIFF(DAY, @MinDate, @MaxDate) + 1) Date = DATEADD(DAY, ROW_NUMBER() OVER(ORDER BY a.object_id) - 1, @MinDate) FROM sys.all_objects a; ";
+            string datesSql = "select DATEPART(wk, dates), dates from (select TOP (DATEDIFF(DAY, @MinDate, @MaxDate) + 1) DATEADD(DAY, ROW_NUMBER() OVER(ORDER BY a.object_id) - 1, @MinDate) dates FROM sys.all_objects a) as d; ";
 
             SqlCommand comm1 = new SqlCommand(sql1, conn);
             comm1.Parameters.AddWithValue("@siteId", site);
@@ -67,7 +67,7 @@ namespace saassecurity
                         siteShifts.weekday = Convert.ToInt32(reader[1].ToString());
                         siteShifts.startTime = Convert.ToInt32(reader[2].ToString());
                         siteShifts.endTime = Convert.ToInt32(reader[3].ToString());                        
-
+                         
                         listSiteShifts.Add(siteShifts);
                     }
                 }
@@ -76,9 +76,9 @@ namespace saassecurity
                 string insertSql = "";
                 while (readerDates.Read())
                 {                    
-                    DateTime schedDate = (DateTime)readerDates[0];
+                    DateTime schedDate = (DateTime)readerDates[1];
                     int day = (int)schedDate.DayOfWeek + 1;
-
+                    int weekNum = Convert.ToInt32(readerDates[0]);
                     for (int i = 0; i < listSiteShifts.Count; i++) {
                         if (day == listSiteShifts[i].weekday) {
                             siteSched = new SiteShifts();
@@ -86,12 +86,12 @@ namespace saassecurity
                             siteSched.day = schedDate.DayOfWeek.ToString();
                             siteSched.startTime = listSiteShifts[i].startTime;
                             siteSched.endTime = listSiteShifts[i].endTime;
-
+                            siteSched.weekNum = weekNum;
                             listSchedule.Add(siteSched);
 
                             insertSql += "if not exists(select scheduleId from schedule where siteId = '" + listSiteShifts[i].siteId + "' and shiftDate='" + schedDate + "') ";
-                            insertSql += "insert into schedule(siteId, shiftDate,shiftDay,startTime, endTime )" +
-                           "values('" + listSiteShifts[i].siteId + "', '" + schedDate.Date + "','" + listSiteShifts[i].weekday + "','" + listSiteShifts[i].startTime + "','" + listSiteShifts[i].endTime + "');";
+                            insertSql += "insert into schedule(siteId, shiftDate,shiftDay,startTime, endTime, weekNum )" +
+                           "values('" + listSiteShifts[i].siteId + "', '" + schedDate.Date + "','" + listSiteShifts[i].weekday + "','" + listSiteShifts[i].startTime + "','" + listSiteShifts[i].endTime + "','" + weekNum + "');";
 
                         }
                     }

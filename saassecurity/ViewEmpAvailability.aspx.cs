@@ -16,8 +16,8 @@ namespace saassecurity
             "when 1 then 'Sunday' when 2 then 'Monday'	when 3 then 'Tuesday' " +
             "when 4 then 'Wednesday' when 5 then 'Thursday'	when 6 then 'Friday'" +
             "when 7 then 'Saturday' end) as day, a.startTime, a.endTime, " +
-            "e.firstName + e.lastName as name, h.totalHours, h.totalHours - h.hoursDone as hoursRemaining " +
-            "from availability a JOIN employees e on a.empId = e.empId JOIN empHours h on h.empId = a.empId" +
+            "e.firstName + e.lastName as name, e.hours " +
+            "from availability a JOIN employees e on a.empId = e.empId" +
             " where a.startTime >= @startTime and a.endTime <= @endTime";
         String sqlOrder = " order by a.weekday asc";
         String sqlConnection = ConfigurationManager.ConnectionStrings["scheduleDb"].ToString();

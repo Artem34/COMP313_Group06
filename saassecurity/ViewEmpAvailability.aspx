@@ -41,8 +41,7 @@
             <asp:BoundField DataField="endTime" HeaderText="End Time" SortExpression="endTime" />
             <asp:BoundField DataField="empId" HeaderText="Employee ID" SortExpression="empId" />
             <asp:BoundField DataField="name" HeaderText="Employee Name" ReadOnly="True" SortExpression="name" />
-            <asp:BoundField DataField="totalHours" HeaderText="Employee Total Hours" SortExpression="totalHours" />
-            <asp:BoundField DataField="hoursRemaining" HeaderText="Available Hours" ReadOnly="True" SortExpression="hoursRemaining" />
+            <asp:BoundField DataField="hours" HeaderText="Employee Total Hours" SortExpression="hours" />
         </Columns>
         <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />
         <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="#CCCCFF" />
@@ -59,7 +58,7 @@
            when 1 then 'Sunday' when 2 then 'Monday'	when 3 then 'Tuesday' 
             when 4 then 'Wednesday' when 5 then 'Thursday'	when 6 then 'Friday'
             when 7 then 'Saturday' end) as weekday, a.startTime, a.endTime, 
-            e.firstName + e.lastName as name, h.totalHours, h.totalHours - h.hoursDone as hoursRemaining
+            e.firstName + e.lastName as name, e.hours,
             from availability a JOIN employees e on a.empId = e.empId JOIN empHours h on h.empId = a.empId where a.weekday = @weekDay">
         <SelectParameters>
             <asp:ControlParameter ControlID="drpWeekDay" Name="weekDay" PropertyName="SelectedValue" />

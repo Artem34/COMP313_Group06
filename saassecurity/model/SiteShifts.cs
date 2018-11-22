@@ -14,5 +14,6 @@ namespace saassecurity.model
         public int endTime { get; set; }
         public String shiftDate { get; set; }
         public String day { get; set; }
+        public int weekNum { get; set; }
     }
 }

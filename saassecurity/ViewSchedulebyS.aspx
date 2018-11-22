@@ -26,7 +26,7 @@
                     <Columns>
                         <asp:BoundField DataField="site" HeaderText="Site Name" ReadOnly="True" SortExpression="site" />
                         <asp:BoundField DataField="shiftDate" HeaderText="Shift Date" SortExpression="shiftDate" />
-                        <asp:BoundField DataField="shiftDay" HeaderText="Week Day" SortExpression="shiftDay" />
+                        <asp:BoundField DataField="day" HeaderText="Week Day" SortExpression="day" />
                         <asp:BoundField DataField="startTime" HeaderText="Start Time" SortExpression="startTime" />
                         <asp:BoundField DataField="endTime" HeaderText="End Time" SortExpression="endTime" />
                         <asp:BoundField DataField="name" HeaderText="Guard Name" ReadOnly="True" SortExpression="name" />
@@ -45,7 +45,8 @@
                     <SortedDescendingHeaderStyle BackColor="#4870BE" />
                 </asp:GridView>
             </div>
-            <asp:SqlDataSource ID="ScheduleDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ScheduleDb %>" SelectCommand="select (select t.siteName from sites t where t.siteId=s.siteId) as site,s.shiftDate,s.shiftDay,s.startTime,s.endTime,(select firstName + ' ' + lastName 
+            <asp:SqlDataSource ID="ScheduleDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ScheduleDb %>" SelectCommand="select (select t.siteName from sites t where t.siteId=s.siteId) as site,s.shiftDate,
+(case s.shiftDay when 1 then 'Sunday' when 2 then 'Monday' when 3 then 'Tuesday'  when 4 then 'Wednesday' when 5 then 'Thursday' when 6 then 'Friday' when 7 then 'Saturday' end) as day,s.startTime,s.endTime,(select firstName + ' ' + lastName 
  from employees e where e.empId=s.empId) as name,s.checkInStatus,s.checkInTime  from schedule s order by s.shiftDate asc"></asp:SqlDataSource>
             <br />
         </div>

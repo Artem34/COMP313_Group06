@@ -36,7 +36,7 @@ namespace saassecurity
             if (e.CommandName == "CheckInShift")
             {
                 int rowId = Convert.ToInt32( e.CommandArgument.ToString());
-                int scheduleId = Convert.ToInt32(GridView1.Rows[rowId].Cells[0].Text);
+                int scheduleId = Convert.ToInt32(GridView1.DataKeys[rowId]["scheduleId"]);
 
                 String query = "Update Schedule set checkInStatus = 'Y', checkInTime=@now where scheduleId=@scheduleId";
                

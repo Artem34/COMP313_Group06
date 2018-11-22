@@ -20,10 +20,17 @@
         }
         .auto-style3 {
             margin-left: 212px;
+            padding-right: 10px;
         }
+         .auto-style3 td
+        {
+            padding-right: 5px; /* selects every <li> element that are preceded by a <li> element. */
+            list-style:none;
+        }
+
         </style>
 </head>
-<body style="width: 960px; margin-left: 0px; height: 315px;">
+<body>
               
     <form id="form1" runat="server">
         <div>
@@ -32,7 +39,7 @@
                    <asp:Button ID="btnLogout" runat="server" OnClick="Button1_Click" Text="Logout" Visible="False" />
                    <br />
 &nbsp; &nbsp;&nbsp;
-<asp:Menu ID="navigationMenu" runat="server" BackColor="#B5C7DE" CssClass="auto-style3" DynamicHorizontalOffset="2" Font-Names="Verdana" Font-Size="0.8em" ForeColor="#284E98" Orientation="Horizontal" RenderingMode="Table" StaticSubMenuIndent="10px" Visible="False" Height="16px" Width="385px">
+<asp:Menu ID="navigationMenu" runat="server" BackColor="#B5C7DE" CssClass="auto-style3" DynamicHorizontalOffset="3" Font-Names="Verdana" Font-Size="0.9em" ForeColor="#284E98" Orientation="Horizontal" RenderingMode="Table" StaticSubMenuIndent="10px" Visible="False" Height="16px" Width="385px">
                        <DynamicHoverStyle BackColor="#284E98" ForeColor="White" />
                        <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
                        <DynamicMenuStyle BackColor="#B5C7DE" />
@@ -40,8 +47,8 @@
                        <Items>
                           
                        </Items>
-                       <StaticHoverStyle BackColor="#284E98" ForeColor="White" />
-                       <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                       <StaticHoverStyle BackColor="#eeeeee" />
+                       <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" ItemSpacing="15px"/>
                        <StaticSelectedStyle BackColor="#507CD1" />
                    </asp:Menu>
                    <br />

@@ -14,6 +14,8 @@
         <div>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="ScheduleDataSource" ForeColor="#333333" GridLines="None">
             <AlternatingRowStyle BackColor="White" />
+            <HeaderStyle HorizontalAlign="Center" />
+            <RowStyle HorizontalAlign="Center" />
             <Columns>
                 <asp:BoundField DataField="site" HeaderText="Site Name" ReadOnly="True" SortExpression="site" />
                 <asp:BoundField DataField="shiftDate" HeaderText="Shift Date" SortExpression="shiftDate" />
@@ -23,6 +25,8 @@
                 <asp:BoundField DataField="name" HeaderText="Guard Name" ReadOnly="True" SortExpression="name" />
                 <asp:BoundField DataField="checkInStatus" HeaderText="Check In Status" SortExpression="checkInStatus" />
                 <asp:BoundField DataField="checkInTime" HeaderText="Check In Time" SortExpression="checkInTime" />
+                <asp:BoundField DataField="checkInStatus" HeaderText="Check Out Status" SortExpression="checkOutStatus" />
+                <asp:BoundField DataField="checkInTime" HeaderText="Check Out Time" SortExpression="checkOutTime" />
             </Columns>
             <EditRowStyle BackColor="#2461BF" />
             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

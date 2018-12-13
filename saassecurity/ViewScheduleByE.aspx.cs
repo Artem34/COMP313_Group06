@@ -63,7 +63,34 @@ namespace saassecurity
                 }
                 
             }
-            else if (e.CommandName == "BookOff") {
+            else if (e.CommandName == "CheckOutShift") {
+                int rowId = Convert.ToInt32(e.CommandArgument.ToString());
+                int scheduleId = Convert.ToInt32(GridView1.DataKeys[rowId]["scheduleId"]);
+
+                String query = "Update Schedule set checkOutStatus = 'Y', checkOutTime=@now where scheduleId=@scheduleId";
+
+                try
+                {
+                    conn.Open();
+                    sqlcommand = new SqlCommand(query, conn);
+                    sqlcommand.Parameters.AddWithValue("@now", DateTime.Now);
+                    sqlcommand.Parameters.AddWithValue("@scheduleId", scheduleId);
+
+
+                    sqlcommand.ExecuteNonQuery();
+
+                    lblErrorMsg.Text = "You have successfully checked out from shift : " + scheduleId;
+
+                    Page.Response.Redirect(Page.Request.Url.ToString(), true);
+                }
+                catch (SqlException ex)
+                {
+                    lblErrorMsg.Text = ex.ToString();
+                }
+                finally
+                {
+                    conn.Close();
+                }
 
             }
         }

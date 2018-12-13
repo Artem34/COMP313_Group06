@@ -17,7 +17,7 @@ namespace saassecurity
         {
             if (Session["empId"] != null)
             {
-                this.Master.WelcomeMessage = "Welcome, " + Session["name"];
+               
             }
             else
             {

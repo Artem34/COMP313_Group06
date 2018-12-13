@@ -54,7 +54,7 @@ namespace saassecurity
                     int startTime = Convert.ToInt32(reademp[3].ToString());
                     int endTime = Convert.ToInt32(reademp[4].ToString());
                     int weekNum = Convert.ToInt32(reademp[5].ToString());
-                    string sqlsched = "select empId from availability where weekday= '"+shiftDay+"' and startTime <=" + startTime + "and endTime >= " + endTime;
+                    string sqlsched = "select empId from availability where weekday= '"+shiftDay+ "' and '" +  shiftDate + "' between startDate and endDate and startTime <=" + startTime + "and endTime >= " + endTime;
 
                     SqlCommand com = new SqlCommand(sqlsched, conn);
                     SqlDataReader avReader = com.ExecuteReader();

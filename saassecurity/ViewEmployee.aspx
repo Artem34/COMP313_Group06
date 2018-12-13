@@ -18,7 +18,7 @@
         <br />
         <asp:Panel ID="Panel2" runat="server" Height="180px">
             <div class="auto-style5">
-                <asp:GridView HorizontalAlign="Center" ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="empId" DataSourceID="EmployeeListDataSource" ForeColor="#333333" GridLines="None" Width="740px">
+                <asp:GridView HorizontalAlign="Center" ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="empId" DataSourceID="EmployeeListDataSource" ForeColor="#333333" GridLines="None"  Width="740px" AllowSorting="true" OnSorting="GridView1_Sorting" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
                         <asp:BoundField DataField="empId" HeaderText="Employee ID" InsertVisible="False" ReadOnly="True" SortExpression="empId" />
@@ -44,5 +44,5 @@
         </asp:Panel>
     </div>
 </asp:Panel>
-<asp:SqlDataSource ID="EmployeeListDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ScheduleDb %>" SelectCommand="SELECT [firstName], [lastName], [status], [empId], [email], [contactNum] FROM [employees]"></asp:SqlDataSource>
+<asp:SqlDataSource ID="EmployeeListDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ScheduleDb %>" SelectCommand="SELECT [firstName], [lastName], [status], [empId], [email], [contactNum] FROM [employees]" OnSelecting="EmployeeListDataSource_Selecting"></asp:SqlDataSource>
 </asp:Content>

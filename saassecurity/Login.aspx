@@ -40,8 +40,7 @@
 </asp:Content>
 <asp:Content ID="Content2" CssClass="text-center" ContentPlaceHolderID="ContentPlaceHolder1" runat="server" >
     <asp:Panel ID="Panel1" runat="server" CssClass="text-center" >
-        <span style="color: #0000FF; font-size: 22px; font-weight: normal; font-family: Arial, Helvetica, sans-serif">Welcome to Saas Security Services</span><br />
-       <form name="login" class="form-signin">
+        <form name="login" class="form-signin">
         <br />
 
         

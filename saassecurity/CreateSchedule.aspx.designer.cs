@@ -13,6 +13,15 @@ namespace saassecurity {
     public partial class CreateSchedule {
         
         /// <summary>
+        /// tblSelection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table tblSelection;
+        
+        /// <summary>
         /// lblErrorMsg control.
         /// </summary>
         /// <remarks>
@@ -22,31 +31,13 @@ namespace saassecurity {
         protected global::System.Web.UI.WebControls.Label lblErrorMsg;
         
         /// <summary>
-        /// Panel1 control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
-        
-        /// <summary>
-        /// Panel2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel2;
-        
-        /// <summary>
-        /// tblSelection control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblSelection;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
         /// drpSite control.
@@ -67,6 +58,15 @@ namespace saassecurity {
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtFromDate;
         
         /// <summary>
+        /// RequiredFieldValidator4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+        
+        /// <summary>
         /// txtToDate control.
         /// </summary>
         /// <remarks>
@@ -76,6 +76,15 @@ namespace saassecurity {
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtToDate;
         
         /// <summary>
+        /// RequiredFieldValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        
+        /// <summary>
         /// btnCreateSched control.
         /// </summary>
         /// <remarks>
@@ -83,15 +92,6 @@ namespace saassecurity {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCreateSched;
-        
-        /// <summary>
-        /// SitesDataSource control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SitesDataSource;
         
         /// <summary>
         /// labelMessage control.
@@ -110,5 +110,26 @@ namespace saassecurity {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gridSched;
+        
+        /// <summary>
+        /// SitesDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SitesDataSource;
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new saassecurity.MasterPage Master {
+            get {
+                return ((saassecurity.MasterPage)(base.Master));
+            }
+        }
     }
 }

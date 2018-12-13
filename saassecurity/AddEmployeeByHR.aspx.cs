@@ -7,16 +7,16 @@ using System.Web.UI.WebControls;
 using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.IO;
+using System.Data;
+using CsvHelper;
+using saassecurity.model;
 
 namespace saassecurity
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
         string connString = ConfigurationManager.ConnectionStrings["ScheduleDb"].ConnectionString;
-        
-
-        private String fname, lname, email, phn, address, username,password,cpassword,dbrth, role,status, hours;
-
         
         protected void btncancel_Click(object sender, EventArgs e)
         {
@@ -28,72 +28,114 @@ namespace saassecurity
         {
             if (txtpwd.Text == txtcpwd.Text)
             {
-                SqlConnection conn = new SqlConnection(connString);
+                EmployeeUser emp = new EmployeeUser();
+                emp.firstName = txtfName.Text.ToString();
+                emp.lastName = txtlName.Text.ToString();
+                emp.email = txtemail.Text.ToString();
+                emp.contactNum = txtphn.Text.ToString();
+                emp.address = txtaddress.Text.ToString();
+                emp.userId = txtuser.Text.ToString();
+                emp.password = txtpwd.Text.ToString();
+                emp.confirmPassword = txtcpwd.Text.ToString();
+                emp.dob = txtdate.Text.ToString();                
+                emp.role = drpRole.SelectedValue;
+                emp.hours = statusRadio.SelectedValue;
+                emp.status = statusRadio.SelectedItem.ToString();
 
-                SqlCommand sqlcommand;
-                fname = txtfName.Text.ToString();
-                lname = txtlName.Text.ToString();
-                email = txtemail.Text.ToString();
-                phn = txtphn.Text.ToString();
-                address = txtaddress.Text.ToString();
-                username = txtuser.Text.ToString();
-                password = txtpwd.Text.ToString();
-                cpassword = txtcpwd.Text.ToString();
-                dbrth = txtdate.Text.ToString();                
-                role = drpRole.SelectedValue;
-                hours = statusRadio.SelectedValue;
-                status = statusRadio.SelectedItem.ToString();
-
-                string insertEmp = "INSERT INTO employees(firstName,lastName,dob,address,email,contactNum,userId,hours, status) VALUES(@firstName,@lastName,@dob,@address,@email,@contactNum,@userId,@hours, @status);"
-                                + "SELECT CAST(scope_identity() AS int)";
-                sqlcommand = new SqlCommand(insertEmp, conn);
-                sqlcommand.Parameters.AddWithValue("@firstName", fname);
-                sqlcommand.Parameters.AddWithValue("@lastName", lname);
-                sqlcommand.Parameters.AddWithValue("@dob", dbrth);
-                sqlcommand.Parameters.AddWithValue("@address", address);
-                sqlcommand.Parameters.AddWithValue("@email", email);
-                sqlcommand.Parameters.AddWithValue("@contactNum", phn);
-                sqlcommand.Parameters.AddWithValue("@userId", username);
-                sqlcommand.Parameters.AddWithValue("@hours", hours);
-                sqlcommand.Parameters.AddWithValue("@status", status);
-
-                try
-                {
-
-                    conn.Open();
-                    int empId = Convert.ToInt32(sqlcommand.ExecuteScalar());
-
-                    string insertUser = "INSERT INTO users(userId,password,role, empId) VALUES(@userId,@password,@role,@empId)";
-
-                    sqlcommand = new SqlCommand(insertUser, conn);
-                    sqlcommand.Parameters.AddWithValue("@userId", username);
-                    sqlcommand.Parameters.AddWithValue("@password", password);
-                    sqlcommand.Parameters.AddWithValue("@role", role);
-                    sqlcommand.Parameters.AddWithValue("@empId", empId);
-
-                    sqlcommand.ExecuteNonQuery();
-
-                    string insertHour = "insert into empHours values(@empId,@totalHours,0)";
-                    SqlCommand cmd = new SqlCommand(insertHour,conn);
-                    cmd.Parameters.AddWithValue("@empId", empId);
-                    cmd.Parameters.AddWithValue("@totalHours", hours);
-                    cmd.ExecuteNonQuery();
+                if (insertEmployee(emp) > 0) {
 
                     lblErrorMsg.Text = "Employee Added Successfully!";
                 }
-                catch (SqlException ex)
-                {
-                    lblErrorMsg.Text = ex.ToString();
-                }
-                finally
-                {
-                    conn.Close();
-                }
+                
             }
             else {
                 lblErrorMsg.Text = "Passwords do not match!";
             }
 
+        }
+
+        public void UploadEmployees(object sender, EventArgs e) {
+            if (uploadCsvControl.HasFile) {
+                string fileExt =
+               System.IO.Path.GetExtension(uploadCsvControl.FileName);
+                if(fileExt == ".csv" || fileExt == ".xlsx") {
+                    DataTable dt = new DataTable();
+                    List<EmployeeUser> allEmployees = new List<EmployeeUser>();
+                    try
+                    {
+                        using (var reader = new StreamReader(uploadCsvControl.PostedFile.InputStream))
+                        using (var csvReader = new CsvReader(reader))
+                        {
+                            while (csvReader.Read()) {
+                                EmployeeUser data = csvReader.GetRecord<EmployeeUser>();
+                                if (insertEmployee(data) <= 0) {
+                                    lblErrorMsg.Text = "Error adding employee!";
+                                    break;
+                                }
+                            }
+
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.Write(ex.StackTrace);
+                    }
+                }
+               
+            }
+        }
+
+        public int insertEmployee(EmployeeUser empUser) {
+            SqlConnection conn = new SqlConnection(connString);
+
+            SqlCommand sqlcommand;
+
+            string insertEmp = "INSERT INTO employees(firstName,lastName,dob,address,email,contactNum,userId,hours, status) VALUES(@firstName,@lastName,@dob,@address,@email,@contactNum,@userId,@hours, @status);"
+                                + "SELECT CAST(scope_identity() AS int)";
+            sqlcommand = new SqlCommand(insertEmp, conn);
+            sqlcommand.Parameters.AddWithValue("@firstName", empUser.firstName);
+            sqlcommand.Parameters.AddWithValue("@lastName", empUser.lastName);
+            sqlcommand.Parameters.AddWithValue("@dob", empUser.dob);
+            sqlcommand.Parameters.AddWithValue("@address", empUser.address);
+            sqlcommand.Parameters.AddWithValue("@email", empUser.email);
+            sqlcommand.Parameters.AddWithValue("@contactNum", empUser.contactNum);
+            sqlcommand.Parameters.AddWithValue("@userId", empUser.userId);
+            sqlcommand.Parameters.AddWithValue("@hours", empUser.hours);
+            sqlcommand.Parameters.AddWithValue("@status", empUser.status);
+
+            try
+            {
+
+                conn.Open();
+                int empId = Convert.ToInt32(sqlcommand.ExecuteScalar());
+
+                string insertUser = "INSERT INTO users(userId,password,role, empId) VALUES(@userId,@password,@role,@empId)";
+
+                sqlcommand = new SqlCommand(insertUser, conn);
+                sqlcommand.Parameters.AddWithValue("@userId", empUser.userId);
+                sqlcommand.Parameters.AddWithValue("@password", empUser.password);
+                sqlcommand.Parameters.AddWithValue("@role", empUser.role);
+                sqlcommand.Parameters.AddWithValue("@empId", empId);
+
+                sqlcommand.ExecuteNonQuery();
+
+                string insertHour = "insert into empHours values(@empId,@totalHours,0)";
+                SqlCommand cmd = new SqlCommand(insertHour, conn);
+                cmd.Parameters.AddWithValue("@empId", empId);
+                cmd.Parameters.AddWithValue("@totalHours", empUser.hours);
+                return cmd.ExecuteNonQuery();
+
+            }
+            catch (SqlException ex)
+            {
+                lblErrorMsg.Text = ex.ToString();
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return -1;
         }
 
         protected void Page_Load(object sender, EventArgs e)

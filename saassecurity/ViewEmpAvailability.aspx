@@ -1,11 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="ViewEmpAvailability.aspx.cs" Inherits="saassecurity.ViewEmpAvailability" %>
+<%@ MasterType VirtualPath="~/MasterPage.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+    <style type="text/css">
+        .lblElem{
+            color: #0026ff;
+        }
+    </style>
+
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server" >
-    <div>
+    <div align="center">
 
-        Filter:
+        <div style="padding-bottom:30px;">
+            <asp:Label Text="Filter: " runat="server" CssClass="lblElem"/>
         
         Available on
         <asp:Label runat="server" Text="Day:" />
@@ -27,11 +35,11 @@
         <asp:DropDownList ID="drpEndTime" runat="server" DataSourceID="HoursDS" /> (End Time)
         
     
-        <asp:Button ID="btnSearch" runat="server" Text="Apply" OnClick="filterData" />
+        <asp:Button ID="btnSearch" runat="server" Text="Apply" OnClick="filterData" CssClass="btn btn-lg btn-primary btn-blocks"/>
         
-       
-    
-    </div>
+        </div>
+        
+ 
 
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" OnDataBound="OnDataBound" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" AllowPaging="True" AllowSorting="True">
         <Columns>
@@ -40,7 +48,7 @@
             <asp:BoundField DataField="startTime" HeaderText="Start Time" SortExpression="startTime" />
             <asp:BoundField DataField="endTime" HeaderText="End Time" SortExpression="endTime" />
             <asp:BoundField DataField="empId" HeaderText="Employee ID" SortExpression="empId" />
-            <asp:BoundField DataField="name" HeaderText="Employee Name" ReadOnly="True" SortExpression="name" />
+            <asp:HyperLinkField DataTextField="name" HeaderText="Employee Name" DataNavigateUrlFields="empId" DataNavigateUrlFormatString="~/ViewEmployeeDetail.aspx?empId={0}" />
             <asp:BoundField DataField="hours" HeaderText="Employee Total Hours" SortExpression="hours" />
         </Columns>
         <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />
@@ -53,7 +61,7 @@
         <SortedDescendingCellStyle BackColor="#D6DFDF" />
         <SortedDescendingHeaderStyle BackColor="#002876" />
     </asp:GridView>
-  
+  </div>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ScheduleDb %>" SelectCommand="select a.empId, (case a.weekday 
            when 1 then 'Sunday' when 2 then 'Monday'	when 3 then 'Tuesday' 
             when 4 then 'Wednesday' when 5 then 'Thursday'	when 6 then 'Friday'

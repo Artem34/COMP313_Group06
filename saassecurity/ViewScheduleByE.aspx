@@ -11,18 +11,16 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <body>
-        <div>
+    <div align="center">
             <table>
                 <tr>
                     <td>
-                        <asp:Panel ID="Panel1" runat="server" Height="157px" Width="819px">
+                      
                             <div>
                                 <div class="auto-style5">
                                     Schedule Information<br />
                                     <asp:Label ID="lblErrorMsg" runat="server" ForeColor="Red"></asp:Label>
-                                    <br />
-                                    <br />
+                                   <br />
                                 </div>
                                 <asp:GridView HorizontalAlign="Center" ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="scheduleId" DataSourceID="EmployeeScheduleDataSource" Width="934px" AllowPaging="True" AllowSorting="True" OnRowCommand="RowSelected" CellPadding="4" ForeColor="#333333" GridLines="None">
                                     <AlternatingRowStyle BackColor="White" />
@@ -56,7 +54,6 @@
                                     </SelectParameters>
                                 </asp:SqlDataSource>
                             </div>
-                        </asp:Panel>
                     </td>
                 </tr>
                
@@ -64,5 +61,4 @@
 
             </table>
         </div>
-</body>
 </asp:Content>

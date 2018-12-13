@@ -13,13 +13,13 @@ namespace saassecurity {
     public partial class AssignSchedule {
         
         /// <summary>
-        /// Panel1 control.
+        /// lblErrorMsg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
+        protected global::System.Web.UI.WebControls.Label lblErrorMsg;
         
         /// <summary>
         /// lblSite control.
@@ -40,24 +40,6 @@ namespace saassecurity {
         protected global::System.Web.UI.WebControls.DropDownList drpSelectSite;
         
         /// <summary>
-        /// SitesDataSource control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SitesDataSource;
-        
-        /// <summary>
-        /// lblErrorMsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorMsg;
-        
-        /// <summary>
         /// btnStartSchedAssign control.
         /// </summary>
         /// <remarks>
@@ -65,6 +47,15 @@ namespace saassecurity {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnStartSchedAssign;
+        
+        /// <summary>
+        /// SitesDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SitesDataSource;
         
         /// <summary>
         /// Master property.

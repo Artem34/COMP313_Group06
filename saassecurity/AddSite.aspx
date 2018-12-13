@@ -174,7 +174,7 @@
             <asp:TableRow>
                 <asp:TableCell ColumnSpan="3" HorizontalAlign="Center">
                     <br />
-                     <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Save Site Details" />
+                     <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Save Site Details" CssClass="btn btn-lg btn-primary btn-blocks"/>
                 </asp:TableCell>
             </asp:TableRow>
     </asp:Table>

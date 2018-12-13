@@ -39,6 +39,126 @@
                     <RowStyle BackColor="#EFF3FB" />
                 </asp:DetailsView>
             </div>
+             <div align="center">
+        <asp:Table runat="server">
+            <asp:TableRow>
+                <asp:TableCell ColumnSpan="5" HorizontalAlign="Center" CssClass="firstRow">
+                     <asp:Label ID="Label1" runat="server" Text="Availability for Current Schedule:" Font-Bold="False" Font-Italic="False" Font-Size="Large" Font-Underline="False" style=""></asp:Label>
+                </asp:TableCell>
+            </asp:TableRow>
+
+            <asp:TableRow>
+                <asp:TableCell>
+                    <asp:CheckBox ID="chkMon" runat="server" Text="Monday" />
+                </asp:TableCell>
+                <asp:TableCell>
+                     <asp:Label ID="Label4" runat="server" Text="Start Time:" Font-Bold="True"></asp:Label>                        
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:DropDownList ID="startMon" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Width="64px">
+                            <asp:ListItem Value="1"></asp:ListItem>
+                            <asp:ListItem Value="24"></asp:ListItem>
+                        </asp:DropDownList>
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:Label ID="Label5" runat="server" Text="End Time:" Font-Bold="True"></asp:Label>
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:DropDownList ID="endMon" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Width="64px">
+                            <asp:ListItem Value="1"></asp:ListItem>
+                    </asp:DropDownList>
+                </asp:TableCell>
+            </asp:TableRow>
+            <asp:TableRow>
+                <asp:TableCell><asp:CheckBox ID="chkTue" runat="server" Text="Tuesday" /></asp:TableCell>
+                <asp:TableCell> <asp:Label ID="Label8" runat="server" Text="Start Time:" Font-Bold="True"></asp:Label></asp:TableCell>
+                <asp:TableCell>
+                     <asp:DropDownList ID="startTue" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Width="64px">
+                            <asp:ListItem Value="1"></asp:ListItem>
+                            <asp:ListItem Value="24"></asp:ListItem>
+                        </asp:DropDownList>
+                </asp:TableCell>
+                <asp:TableCell><asp:Label ID="Label9" runat="server" Text="End Time:" Font-Bold="True"></asp:Label></asp:TableCell>
+                <asp:TableCell>
+                    <asp:DropDownList ID="endTue" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Width="64px"></asp:DropDownList>
+                </asp:TableCell>
+            </asp:TableRow>
+            <asp:TableRow>
+                <asp:TableCell><asp:CheckBox ID="chkWed" runat="server" Text="Wednesday" /></asp:TableCell>
+                <asp:TableCell><asp:Label ID="Label12" runat="server" Text="Start Time:" Font-Bold="True"></asp:Label></asp:TableCell>
+                <asp:TableCell>
+                     <asp:DropDownList ID="startWed" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Width="64px">
+                            <asp:ListItem Value="1"></asp:ListItem>
+                            <asp:ListItem Value="24"></asp:ListItem>
+                        </asp:DropDownList>
+                </asp:TableCell>
+                <asp:TableCell><asp:Label ID="Label13" runat="server" Text="End Time:" Font-Bold="True"></asp:Label></asp:TableCell>
+                <asp:TableCell><asp:DropDownList ID="endWed" runat="server" CssClass="auto-style8" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Width="64px"></asp:DropDownList></asp:TableCell>
+            </asp:TableRow>
+
+             <asp:TableRow>
+                <asp:TableCell><asp:CheckBox ID="chkThu" runat="server" Text="Thursday" /></asp:TableCell>
+                <asp:TableCell> <asp:Label ID="Label16" runat="server" Text="Start Time:" Font-Bold="True"></asp:Label></asp:TableCell>
+                <asp:TableCell>
+                    <asp:DropDownList ID="startThu" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Width="64px">
+                            <asp:ListItem Value="1"></asp:ListItem>
+                            <asp:ListItem Value="24"></asp:ListItem>
+                        </asp:DropDownList>
+                </asp:TableCell>
+                <asp:TableCell><asp:Label ID="Label17" runat="server" Text="End Time:" Font-Bold="True"></asp:Label></asp:TableCell>
+                <asp:TableCell> <asp:DropDownList ID="endThu" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Width="64px"></asp:DropDownList></asp:TableCell>
+            </asp:TableRow>
+
+             <asp:TableRow>
+                 <asp:TableCell><asp:CheckBox ID="chkFri" runat="server" Text="Friday" /></asp:TableCell>
+                <asp:TableCell> <asp:Label ID="Label20" runat="server" Text="Start Time:" Font-Bold="True"></asp:Label></asp:TableCell>
+                <asp:TableCell>
+                    <asp:DropDownList ID="startFri" runat="server" AutoPostBack="True" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Width="64px">
+                            <asp:ListItem Value="1"></asp:ListItem>
+                            <asp:ListItem Value="24"></asp:ListItem>
+                        </asp:DropDownList>
+                </asp:TableCell>
+                <asp:TableCell><asp:Label ID="Label21" runat="server" Text="End Time:" Font-Bold="True"></asp:Label></asp:TableCell>
+                <asp:TableCell>
+                    <asp:DropDownList ID="endFri" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Width="64px"></asp:DropDownList>
+                </asp:TableCell>
+                <asp:TableCell></asp:TableCell>
+            </asp:TableRow>
+
+             <asp:TableRow>
+                <asp:TableCell><asp:CheckBox ID="chkSat" runat="server" Text="Saturday" /></asp:TableCell>
+                <asp:TableCell><asp:Label ID="Label24" runat="server" Text="Start Time:" Font-Bold="True"></asp:Label></asp:TableCell>
+                <asp:TableCell>
+                    <asp:DropDownList ID="startSat" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Width="64px">
+                            <asp:ListItem Value="1"></asp:ListItem>
+                            <asp:ListItem Value="24"></asp:ListItem>
+                        </asp:DropDownList>
+                </asp:TableCell>
+                <asp:TableCell><asp:Label ID="Label25" runat="server" Text="End Time:" Font-Bold="True"></asp:Label></asp:TableCell>
+                <asp:TableCell> <asp:DropDownList ID="endSat" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Width="64px"></asp:DropDownList></asp:TableCell>
+            </asp:TableRow>
+
+             <asp:TableRow>
+                <asp:TableCell> <asp:CheckBox ID="chkSun" runat="server" Text="Sunday" /></asp:TableCell>
+                <asp:TableCell><asp:Label ID="Label28" runat="server" Text="Start Time:" Font-Bold="True"></asp:Label></asp:TableCell>
+                <asp:TableCell>
+                    <asp:DropDownList ID="startSun" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Width="64px">
+                            <asp:ListItem Value="1"></asp:ListItem>
+                            <asp:ListItem Value="24"></asp:ListItem>
+                        </asp:DropDownList>
+                </asp:TableCell>
+                <asp:TableCell><asp:Label ID="Label29" runat="server" Text="End Time:" Font-Bold="True"></asp:Label></asp:TableCell>
+                <asp:TableCell><asp:DropDownList ID="endSun" runat="server" DataSourceID="HoursDS" DataTextField="Text" DataValueField="Text" Width="64px"></asp:DropDownList></asp:TableCell>
+            </asp:TableRow> 
+           
+        </asp:Table>
+   
+      
+       <asp:Label ID="lblErrorMsg" runat="server"></asp:Label>
+            <br />
+            <br />
+      </div> 
+     <asp:ObjectDataSource ID="HoursDS" runat="server" SelectMethod="GetHours" TypeName="saassecurity.TimeHours"></asp:ObjectDataSource>
             <asp:SqlDataSource ID="EmpDetailDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ScheduleDb %>" SelectCommand="SELECT [empId], [firstName], [lastName], [dob], [address], [email], [contactNum], [userId], [dot], [status] FROM [employees] WHERE ([empId] = @empId)">
                 <SelectParameters>
                     <asp:QueryStringParameter Name="empId" QueryStringField="empId" Type="Int32" />

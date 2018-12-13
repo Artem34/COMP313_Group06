@@ -23,13 +23,17 @@ namespace saassecurity
                 Response.Redirect("~/Login.aspx?logged=false");
             }
 
-            getAvailability(Session["empId"].ToString());
+            if (!Page.IsPostBack) {
+                getAvailability(Session["empId"].ToString());
+            }
+
+           
         }
 
         private void getAvailability(string empId) {
             string connString = ConfigurationManager.ConnectionStrings["ScheduleDb"].ConnectionString;
             SqlConnection conn = new SqlConnection(connString);
-            String query = "Select weekday, startTime, endTime from availability where empId =" + Convert.ToInt32(empId);
+            String query = "Select weekday, startTime, endTime, startDate, endDate from availability where empId =" + Convert.ToInt32(empId);
             SqlCommand comm = new SqlCommand(query, conn);
             try {
                 conn.Open();
@@ -41,6 +45,11 @@ namespace saassecurity
                         string weekday = reader[0].ToString();
                         string startTime = reader[1].ToString();
                         string endTime = reader[2].ToString();
+                        string startDate = reader[3].ToString();
+                        string endDate = reader[4].ToString();
+
+                        txtStartDate.Value = startDate;
+                        txtEndDate.Value = endDate;
 
                         switch (weekday)
                         {
@@ -101,96 +110,103 @@ namespace saassecurity
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Boolean shiftMon = chkMon.Checked;
-            Boolean shiftTue = chkTue.Checked;
-            Boolean shiftWed = chkWed.Checked;
-            Boolean shiftThu = chkThu.Checked;
-            Boolean shiftFri = chkFri.Checked;
-            Boolean shiftSat = chkSat.Checked;
-            Boolean shiftSun = chkSun.Checked;
+            if (Page.IsPostBack) {
+                Boolean shiftMon = chkMon.Checked;
+                Boolean shiftTue = chkTue.Checked;
+                Boolean shiftWed = chkWed.Checked;
+                Boolean shiftThu = chkThu.Checked;
+                Boolean shiftFri = chkFri.Checked;
+                Boolean shiftSat = chkSat.Checked;
+                Boolean shiftSun = chkSun.Checked;
 
-            var daysMap = new Dictionary<int, List<String>>();
+                string startDate = txtStartDate.Value;
+                string endDate = txtEndDate.Value;
 
-            if (shiftMon)
-            {
-                String monStart = startMon.SelectedItem.Text;
-                
-                String monEnd = endMon.SelectedItem.Text;
+                var daysMap = new Dictionary<int, List<String>>();
 
-                daysMap.Add(2, new List<String> { monStart, monEnd });
+                if (shiftMon)
+                {
+                    String monStart = startMon.SelectedItem.Text;
+
+                    String monEnd = endMon.SelectedItem.Text;
+
+                    daysMap.Add(2, new List<String> { monStart, monEnd });
+                }
+                if (shiftTue)
+                {
+                    String tueStart = startTue.SelectedItem.Text;
+                    String tueEnd = endTue.SelectedItem.Text;
+
+                    daysMap.Add(3, new List<String> { tueStart, tueEnd });
+                }
+                if (shiftWed)
+                {
+                    String wedStart = startWed.SelectedItem.Text;
+                    String wedEnd = endWed.SelectedItem.Text;
+
+                    daysMap.Add(4, new List<String> { wedStart, wedEnd });
+                }
+                if (shiftThu)
+                {
+                    String thuStart = startThu.SelectedItem.Text;
+                    String thuEnd = endThu.SelectedItem.Text;
+
+                    daysMap.Add(5, new List<String> { thuStart, thuEnd });
+                }
+                if (shiftFri)
+                {
+                    String friStart = startFri.SelectedItem.Text;
+                    String friEnd = endFri.SelectedItem.Text;
+
+                    daysMap.Add(6, new List<String> { friStart, friEnd });
+                }
+                if (shiftSat)
+                {
+                    String satStart = startSat.SelectedItem.Text;
+                    String satEnd = endSat.SelectedItem.Text;
+
+                    daysMap.Add(7, new List<String> { satStart, satEnd });
+                }
+                if (shiftSun)
+                {
+                    String sunStart = startSun.SelectedItem.Text;
+                    String sunEnd = endSun.SelectedItem.Text;
+
+                    daysMap.Add(1, new List<String> { sunStart, sunEnd });
+                }
+
+                string connString = ConfigurationManager.ConnectionStrings["ScheduleDb"].ConnectionString;
+                SqlConnection conn = new SqlConnection(connString);
+
+
+                string empl = Session["empId"] + "";
+                int empId = Convert.ToInt32(empl);
+                String query = "delete from availability where empId = " + empId + ";";
+                foreach (var item in daysMap)
+                {
+                    query += "insert into availability(empId, weekday, startTime, endTime, startDate, endDate) " +
+                        "values('" + empId + "','" + item.Key + "','" + item.Value[0] + "','" + item.Value[1] + "', '" + startDate + "', '" + endDate + "');";
+                }
+
+                try
+                {
+                    conn.Open();
+                    SqlCommand comm = new SqlCommand(query, conn);
+                    comm.ExecuteNonQuery();
+
+                    lblErrorMsg.Text = "Availability added successfully!";
+                }
+                catch (SqlException ex)
+                {
+
+                    lblErrorMsg.Text = ex.ToString();
+                }
+                finally
+                {
+                    conn.Close();
+                }
             }
-            if (shiftTue)
-            {
-                String tueStart = startTue.SelectedItem.Text;
-                String tueEnd = endTue.SelectedItem.Text;
-
-                daysMap.Add(3, new List<String> { tueStart, tueEnd });
-            }
-            if (shiftWed)
-            {
-                String wedStart = startWed.SelectedItem.Text;
-                String wedEnd = endWed.SelectedItem.Text;
-
-                daysMap.Add(4, new List<String> { wedStart, wedEnd });
-            }
-            if (shiftThu)
-            {
-                String thuStart = startThu.SelectedItem.Text;
-                String thuEnd = endThu.SelectedItem.Text;
-
-                daysMap.Add(5, new List<String> { thuStart, thuEnd });
-            }
-            if (shiftFri)
-            {
-                String friStart = startFri.SelectedItem.Text;
-                String friEnd = endFri.SelectedItem.Text;
-
-                daysMap.Add(6, new List<String> { friStart, friEnd });
-            }
-            if (shiftSat)
-            {
-                String satStart = startSat.SelectedItem.Text;
-                String satEnd = endSat.SelectedItem.Text;
-
-                daysMap.Add(7, new List<String> { satStart, satEnd });
-            }
-            if (shiftSun)
-            {
-                String sunStart = startSun.SelectedItem.Text;
-                String sunEnd = endSun.SelectedItem.Text;
-
-                daysMap.Add(1, new List<String> { sunStart, sunEnd });
-            }
-
-            string connString = ConfigurationManager.ConnectionStrings["ScheduleDb"].ConnectionString;
-            SqlConnection conn = new SqlConnection(connString);
             
-            
-            string empl = Session["empId"] + "";
-            int empId = Convert.ToInt32(empl);
-            String query = "delete from availability where empId = " + empId + ";";
-            foreach (var item in daysMap)
-            {
-                query += "insert into availability(empId, weekday, startTime, endTime) " +
-                    "values('" + empId + "','" + item.Key + "','" + item.Value[0] + "','" + item.Value[1] + "');";
-            }
-
-            try {
-                conn.Open();
-                SqlCommand comm = new SqlCommand(query, conn);
-                comm.ExecuteNonQuery();
-               
-                lblErrorMsg.Text = "Availability added successfully!";
-            }
-            catch (SqlException ex)
-            {
-
-                lblErrorMsg.Text = ex.ToString();
-            }
-            finally
-            {
-                conn.Close();
-            }
 
         }
     }

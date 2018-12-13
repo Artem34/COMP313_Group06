@@ -59,13 +59,35 @@
 
 <body>
     <div align="center">
+        <asp:Label ID="Label1" runat="server" Text="Availability for Current Schedule:" Font-Bold="False" Font-Italic="False" Font-Size="Large" Font-Underline="False" style=""></asp:Label>
+         <div style="margin-bottom:30px; margin-top:20px;">
+             <asp:Table runat="server">
+                 <asp:TableRow runat="server">
+                     <asp:TableCell>
+                         <asp:Label runat="server" Text="Start Date: " />
+                        <input type="date" id="txtStartDate" runat="server" />
+                     </asp:TableCell>
+                     <asp:TableCell>
+                         <asp:Label runat="server" Text="End Date: " />
+                        <input type="date" id="txtEndDate" runat="server" />
+                     </asp:TableCell>
+                        
+                 </asp:TableRow>
+                 <asp:TableRow>
+                     <asp:TableCell HorizontalAlign="Center">
+                         <asp:RequiredFieldValidator runat="server" ControlToValidate="txtStartDate" Text="Start Date is required" ForeColor="Red"/>
+                     </asp:TableCell>
+                     <asp:TableCell HorizontalAlign="Center">
+                          <asp:RequiredFieldValidator runat="server" ControlToValidate="txtEndDate" Text="End Date is required" ForeColor="Red"/>
+                     </asp:TableCell>
+                 </asp:TableRow>
+             </asp:Table>
+             
+             
+             
+         </div>
         <asp:Table runat="server">
-            <asp:TableRow>
-                <asp:TableCell ColumnSpan="5" HorizontalAlign="Center" CssClass="firstRow">
-                     <asp:Label ID="Label1" runat="server" Text="Availability for Current Schedule:" Font-Bold="False" Font-Italic="False" Font-Size="Large" Font-Underline="False" style=""></asp:Label>
-                </asp:TableCell>
-            </asp:TableRow>
-
+            
             <asp:TableRow>
                 <asp:TableCell>
                     <asp:CheckBox ID="chkMon" runat="server" Text="Monday" />

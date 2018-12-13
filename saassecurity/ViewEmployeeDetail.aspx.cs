@@ -29,7 +29,7 @@ namespace saassecurity
         {
             string connString = ConfigurationManager.ConnectionStrings["ScheduleDb"].ConnectionString;
             SqlConnection conn = new SqlConnection(connString);
-            String query = "Select weekday, startTime, endTime from availability where empId =" + Convert.ToInt32(empId);
+            String query = "Select weekday, startTime, endTime, startDate, endDate from availability where empId =" + Convert.ToInt32(empId);
             SqlCommand comm = new SqlCommand(query, conn);
             try
             {
@@ -42,6 +42,11 @@ namespace saassecurity
                         string weekday = reader[0].ToString();
                         string startTime = reader[1].ToString();
                         string endTime = reader[2].ToString();
+                        string startDate = reader[3].ToString();
+                        string endDate = reader[4].ToString();
+
+                        txtStartDate.Text = startDate;
+                        txtEndDate.Text = endDate;
 
                         switch (weekday)
                         {

@@ -39,14 +39,23 @@
                     <RowStyle BackColor="#EFF3FB" />
                 </asp:DetailsView>
             </div>
-             <div align="center">
-        <asp:Table runat="server">
+             <div align="center" style="margin-top:20px">
+        <asp:Table runat="server" >
             <asp:TableRow>
                 <asp:TableCell ColumnSpan="5" HorizontalAlign="Center" CssClass="firstRow">
                      <asp:Label ID="Label1" runat="server" Text="Availability for Current Schedule:" Font-Bold="False" Font-Italic="False" Font-Size="Large" Font-Underline="False" style=""></asp:Label>
                 </asp:TableCell>
             </asp:TableRow>
-
+            <asp:TableRow>
+                <asp:TableCell ColumnSpan="2">
+                         <asp:Label runat="server" Text="Start Date: " />
+                        <asp:label id="txtStartDate" runat="server" />
+                     </asp:TableCell>
+                     <asp:TableCell ColumnSpan="2">
+                         <asp:Label runat="server" Text="End Date: " />
+                        <asp:label  id="txtEndDate" runat="server" />
+                     </asp:TableCell>
+            </asp:TableRow>
             <asp:TableRow>
                 <asp:TableCell>
                     <asp:CheckBox ID="chkMon" runat="server" Text="Monday" />

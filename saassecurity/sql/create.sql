@@ -36,7 +36,9 @@ id int identity primary key,
 empId int not null,
 weekday varchar(100),
 startTime int,
-endTime int
+endTime int,
+startDate varchar(50), 
+endDate varchar(50)
 );
 
 create table schedule(

@@ -13,9 +13,10 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="auto-style4">
-        <asp:Panel ID="Panel1" runat="server" HorizontalAlign="Center">
-            <div class="auto-style4">
+    <div align="center">
+        <asp:Label Text="Profile Information" runat="server" />
+       <br />
+        <br />
                 <asp:DetailsView ID="DetailsView1" runat="server"  AutoGenerateRows="False" CellPadding="4" DataKeyNames="empId" DataSourceID="EmpProfileDataSource" ForeColor="#333333" GridLines="None" Height="50px" Width="310px">
                     <AlternatingRowStyle BackColor="White" />
                     <CommandRowStyle BackColor="#D1DDF1" Font-Bold="True" />
@@ -37,8 +38,7 @@
                     <RowStyle BackColor="#EFF3FB" />
                 </asp:DetailsView>
             </div>
-        </asp:Panel>
-    </div>
+       
     <br />
     <br />
     <asp:SqlDataSource ID="EmpProfileDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ScheduleDb %>" DeleteCommand="DELETE FROM [employees] WHERE [empId] = @empId" InsertCommand="INSERT INTO [employees] ([firstName], [lastName], [dob], [address], [email], [contactNum]) VALUES (@firstName, @lastName, @dob, @address, @email, @contactNum)" SelectCommand="SELECT [empId], [firstName], [lastName], [dob], [address], [email], [contactNum] FROM [employees] WHERE ([empId] = @empId)" UpdateCommand="UPDATE [employees] SET [firstName] = @firstName, [lastName] = @lastName, [dob] = @dob, [address] = @address, [email] = @email, [contactNum] = @contactNum WHERE [empId] = @empId">

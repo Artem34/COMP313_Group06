@@ -11,31 +11,34 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <body>
-        <div>
+    <div align="center">
             <table>
                 <tr>
                     <td>
-                        <asp:Panel ID="Panel1" runat="server" Height="157px" Width="819px">
+                      
                             <div>
                                 <div class="auto-style5">
                                     Schedule Information<br />
                                     <asp:Label ID="lblErrorMsg" runat="server" ForeColor="Red"></asp:Label>
-                                    <br />
-                                    <br />
+                                   <br />
                                 </div>
-                                <asp:GridView HorizontalAlign="Center" ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="scheduleId" DataSourceID="EmployeeScheduleDataSource" Width="934px" AllowPaging="True" AllowSorting="True" OnRowCommand="RowSelected" CellPadding="4" ForeColor="#333333" GridLines="None">
+                                <asp:GridView HorizontalAlign="Center" ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="scheduleId" DataSourceID="EmployeeScheduleDataSource" AllowPaging="True" AllowSorting="True" OnRowCommand="RowSelected" CellPadding="4" ForeColor="#333333" GridLines="None">
                                     <AlternatingRowStyle BackColor="White" />
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                    <RowStyle HorizontalAlign="Center" />
                                     <Columns>
-                                        <asp:BoundField DataField="scheduleId" HeaderText="Schedule Id" InsertVisible="False" ReadOnly="True" SortExpression="scheduleId" />
-                                        <asp:BoundField DataField="site" HeaderText="Site" SortExpression="site" />
-                                        <asp:BoundField DataField="shiftDate" HeaderText="Shift Date" SortExpression="shiftDate" />
-                                        <asp:BoundField DataField="shiftDay" HeaderText="Day" SortExpression="shiftDay" />
-                                        <asp:BoundField DataField="startTime" HeaderText="Start Time" SortExpression="startTime" />
-                                        <asp:BoundField DataField="endTime" HeaderText="End Time" SortExpression="endTime" />
-                                        <asp:BoundField DataField="checkInStatus" HeaderText="Check In Status" SortExpression="checkInStatus" />
-                                        <asp:BoundField DataField="checkInTime" HeaderText="Check In Time" SortExpression="checkInTime" />
+                                        <asp:BoundField DataField="scheduleId" HeaderText="Schedule Id" InsertVisible="False" ReadOnly="True" SortExpression="scheduleId" Visible="False" />
+                                        <asp:BoundField DataField="site" HeaderText="Site" SortExpression="site" HeaderStyle-HorizontalAlign="Center"/>
+                                        <asp:BoundField DataField="shiftDate" HeaderText="Shift Date" SortExpression="shiftDate" DataFormatString="{0:yyyy/MM/dd}" HeaderStyle-HorizontalAlign="Center"/>
+                                        <asp:BoundField DataField="shiftDay" HeaderText="Day" SortExpression="shiftDay" HeaderStyle-HorizontalAlign="Center"/>
+                                        <asp:BoundField DataField="startTime" HeaderText="Start Time" SortExpression="startTime" HeaderStyle-HorizontalAlign="Center" />
+                                        <asp:BoundField DataField="endTime" HeaderText="End Time" SortExpression="endTime" HeaderStyle-HorizontalAlign="Center"/>
+                                        <asp:BoundField DataField="checkInStatus" HeaderText="Check In Status" SortExpression="checkInStatus" HeaderStyle-HorizontalAlign="Center"/>
+                                        <asp:BoundField DataField="checkInTime" HeaderText="Check In Time" SortExpression="checkInTime" HeaderStyle-HorizontalAlign="Center"/>
+                                        <asp:BoundField DataField="checkOutStatus" HeaderText="Check Out Status" SortExpression="checkOutStatus" HeaderStyle-HorizontalAlign="Center"/>
+                                        <asp:BoundField DataField="checkOutTime" HeaderText="Check Out Time" SortExpression="checkOutTime" HeaderStyle-HorizontalAlign="Center"/>
                                         <asp:ButtonField ButtonType="Button" CommandName="CheckInShift" Text="Check In" />
+                                        <asp:ButtonField ButtonType="Button" CommandName="CheckOutShift" Text="Check Out" />
                                     </Columns>
                                     <EditRowStyle BackColor="#2461BF" />
                                     <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -48,13 +51,14 @@
                                     <SortedDescendingCellStyle BackColor="#E9EBEF" />
                                     <SortedDescendingHeaderStyle BackColor="#4870BE" />
                                 </asp:GridView>
-                                <asp:SqlDataSource ID="EmployeeScheduleDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ScheduleDb %>" SelectCommand="select s.scheduleId,(select t.siteName from sites t where t.siteId=s.siteId) as site,s.shiftDate,s.shiftDay,s.startTime,s.endTime,s.checkInStatus,s.checkInTime from schedule s where s.empId = @empId">
+                                <asp:SqlDataSource ID="EmployeeScheduleDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ScheduleDb %>" SelectCommand="select s.scheduleId,(select t.siteName from sites t where t.siteId=s.siteId) as site, (select convert(date, s.shiftDate)) as shiftDate,
+(case s.shiftDay when 1 then 'Sunday' when 2 then 'Monday' when 3 then 'Tuesday'  when 4 then 'Wednesday' when 5 then 'Thursday' when 6 then 'Friday' when 7 then 'Saturday' end) as shiftDay
+,s.startTime,s.endTime,s.checkInStatus,s.checkInTime,s.checkOutStatus,s.checkOutTime from schedule s where s.empId = @empId">
                                     <SelectParameters>
                                         <asp:SessionParameter Name="empId" SessionField="empId" Type="Int32" />
                                     </SelectParameters>
                                 </asp:SqlDataSource>
                             </div>
-                        </asp:Panel>
                     </td>
                 </tr>
                
@@ -62,5 +66,4 @@
 
             </table>
         </div>
-</body>
 </asp:Content>

@@ -14,7 +14,7 @@ lastName varchar(50),
 dob date not null,
 address varchar(100) not null,
 email varchar(30) unique not null,
-contactNum int unique not null,
+contactNum bigint unique not null,
 userId varchar(20) unique,
 dot date,
 status varchar(20),
@@ -27,7 +27,7 @@ siteId int identity primary key,
 siteName varchar(20),
 siteAddress varchar(100),
 contactPerson varchar(30),
-contactNum int
+contactNum bigint
 );
 
 create table availability
@@ -49,6 +49,8 @@ endTime int not null,
 empId int,
 checkInStatus char(10),
 checkInTime varchar(50),
+checkOutStatus char(10), 
+checkOutTime varchar(50),
 weekNum int
 );
 
@@ -67,8 +69,9 @@ role varchar(10)
 );
 
 create table empHours(
-	empId int primary key,
-	totalHours int not null,
-	hoursDone int,
+	empId int,
+	tothours int not null,
+	weekNum int,
+	primary key(empId, weekNum),
 	foreign key (empId) references employees(empId) 
 );

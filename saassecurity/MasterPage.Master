@@ -14,50 +14,75 @@
             width: 192px;
             height: 68px;
         }
+
         .auto-style2 {
             height: -15px;
             width: 920px;
         }
+
         .auto-style3 {
             margin-left: 212px;
+            padding-right: 10px;
         }
-        </style>
+
+            .auto-style3 td {
+                padding-right: 5px; /* selects every <li> element that are preceded by a <li> element. */
+                list-style: none;
+            }
+
+        .lblWelcome {
+            padding-right:20px;
+        }
+
+       
+    </style>
 </head>
-<body style="width: 960px; margin-left: 0px; height: 315px;">
-              
+<body>
     <form id="form1" runat="server">
-        <div>
-                   <img alt="Logo" class="auto-style1" src="images/logo.png" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblWelcome" runat="server"></asp:Label>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                   <asp:Button ID="btnLogout" runat="server" OnClick="Button1_Click" Text="Logout" Visible="False" />
-                   <br />
-&nbsp; &nbsp;&nbsp;
-<asp:Menu ID="navigationMenu" runat="server" BackColor="#B5C7DE" CssClass="auto-style3" DynamicHorizontalOffset="2" Font-Names="Verdana" Font-Size="0.8em" ForeColor="#284E98" Orientation="Horizontal" RenderingMode="Table" StaticSubMenuIndent="10px" Visible="False" Height="16px" Width="385px">
-                       <DynamicHoverStyle BackColor="#284E98" ForeColor="White" />
-                       <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
-                       <DynamicMenuStyle BackColor="#B5C7DE" />
-                       <DynamicSelectedStyle BackColor="#507CD1" />
-                       <Items>
-                          
-                       </Items>
-                       <StaticHoverStyle BackColor="#284E98" ForeColor="White" />
-                       <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
-                       <StaticSelectedStyle BackColor="#507CD1" />
-                   </asp:Menu>
-                   <br />
-                   <hr class="auto-style2" />
-                   <br />
+        <div align="center">
+            <asp:Table runat="server">
+                <asp:TableRow>
+                    <asp:TableCell>
+                        <img alt="Logo" class="auto-style1" src="images/logo.png" />
+                    </asp:TableCell>
+                    <asp:TableCell>
+                        <ul style="list-style:none; width:195px">
+                            <li>
+                                <asp:Label ID="lblWelcome" runat="server" CssClass="lblWelcome"></asp:Label>
+                            </li>
+                            <li>
+                                 <asp:Label ID="lblLoggedAs" runat="server" CssClass="lblLoggedAs" Font-Size="Small"></asp:Label>
+                            </li>
+                            
+                        </ul>
+                        </asp:TableCell>
+                    <asp:TableCell>
+                        <asp:Button ID="btnLogout" runat="server" OnClick="Button1_Click" Text="Logout" Visible="False" CausesValidation="false" CssClass="btn btn-lg btn-primary btn-blocks"/>
+                    </asp:TableCell>
+                    </asp:TableRow>
+               
+                <asp:TableRow>
+                    <asp:TableCell>
+                        <asp:Menu ID="navigationMenu" runat="server" BackColor="#B5C7DE" CssClass="auto-style3" DynamicHorizontalOffset="3" Font-Names="Verdana" Font-Size="0.9em" ForeColor="#284E98" Orientation="Horizontal" RenderingMode="Table" StaticSubMenuIndent="10px" Visible="False">
+                            <DynamicHoverStyle BackColor="#284E98" ForeColor="White" />
+                            <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                            <DynamicMenuStyle BackColor="#B5C7DE" />
+                            <DynamicSelectedStyle BackColor="#507CD1" />
+                            <Items>
+                            </Items>
+                            <StaticHoverStyle BackColor="#eeeeee" />
+                            <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" ItemSpacing="15px" />
+                            <StaticSelectedStyle BackColor="#507CD1" />
+                        </asp:Menu>
+                    </asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
         </div>
-           <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-               
-               <asp:Panel ID="Panel1" runat="server" Height="97px">
-                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-               </asp:Panel>
-               
-            </asp:ContentPlaceHolder>
+        <hr />
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
     </form>
     <script src="js/bootstrap.min.js"></script>
-
 
 </body>
 </html>

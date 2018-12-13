@@ -12,3 +12,4 @@ insert into navigationmenu values('View Sites','ViewSites.aspx', 'Admin');
 insert into navigationmenu values('View Employees','ViewEmployee.aspx', 'Admin');
 insert into navigationmenu values('My Profile','ViewUpdateProfile.aspx', 'Employee');
 insert into navigationmenu values('View Availability','ViewEmpAvailability.aspx', 'Admin');
+insert into navigationmenu values('Create Schedule','CreateSchedule.aspx', 'Admin');

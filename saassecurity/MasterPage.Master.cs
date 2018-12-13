@@ -24,7 +24,7 @@ namespace saassecurity
             }
 
         }
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["empId"] != null) {
@@ -36,6 +36,9 @@ namespace saassecurity
                 
                 
                 navigationMenu.Visible = true;
+                lblWelcome.Text = "Welcome, " + Session["name"];
+
+                lblLoggedAs.Text = "(Logged in as, " + Session["role"]+ ")";
             }
         }
 

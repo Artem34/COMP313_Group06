@@ -103,6 +103,7 @@
                          <asp:Label ID="Label1" runat="server" Text="Role:"></asp:Label>
                     </asp:TableCell><asp:TableCell>
                         <asp:DropDownList ID="drpRole" runat="server" Width="135px">
+
                             <asp:ListItem>Employee</asp:ListItem>
                             <asp:ListItem>Supervisor</asp:ListItem>
                             <asp:ListItem>HR</asp:ListItem>

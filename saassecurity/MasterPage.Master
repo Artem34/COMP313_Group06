@@ -33,6 +33,8 @@
         .lblWelcome {
             padding-right:20px;
         }
+
+       
     </style>
 </head>
 <body>
@@ -44,10 +46,21 @@
                         <img alt="Logo" class="auto-style1" src="images/logo.png" />
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:Label ID="lblWelcome" runat="server" CssClass="lblWelcome"></asp:Label>
+                        <ul style="list-style:none; width:195px">
+                            <li>
+                                <asp:Label ID="lblWelcome" runat="server" CssClass="lblWelcome"></asp:Label>
+                            </li>
+                            <li>
+                                 <asp:Label ID="lblLoggedAs" runat="server" CssClass="lblLoggedAs" Font-Size="Small"></asp:Label>
+                            </li>
+                            
+                        </ul>
+                        </asp:TableCell>
+                    <asp:TableCell>
                         <asp:Button ID="btnLogout" runat="server" OnClick="Button1_Click" Text="Logout" Visible="False" CausesValidation="false" CssClass="btn btn-lg btn-primary btn-blocks"/>
                     </asp:TableCell>
-                </asp:TableRow>
+                    </asp:TableRow>
+               
                 <asp:TableRow>
                     <asp:TableCell>
                         <asp:Menu ID="navigationMenu" runat="server" BackColor="#B5C7DE" CssClass="auto-style3" DynamicHorizontalOffset="3" Font-Names="Verdana" Font-Size="0.9em" ForeColor="#284E98" Orientation="Horizontal" RenderingMode="Table" StaticSubMenuIndent="10px" Visible="False">

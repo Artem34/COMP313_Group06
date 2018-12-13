@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CsvHelper, Version=12.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.12.0.1\lib\net45\CsvHelper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -1637,6 +1640,7 @@
       <DependentUpon>CheckIOByE.aspx</DependentUpon>
     </Compile>
     <Compile Include="DaysWeek.cs" />
+    <Compile Include="EmployeeUser.cs" />
     <Compile Include="ForgotPassword.aspx.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1687,6 +1691,7 @@
     <Compile Include="SiteDetails.aspx.designer.cs">
       <DependentUpon>SiteDetails.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SiteShifts.cs" />
     <Compile Include="SiteShiftsUserControl.ascx.cs">
       <DependentUpon>SiteShiftsUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

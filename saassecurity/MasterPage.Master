@@ -34,11 +34,19 @@
         .lblWelcome {
             padding-right:20px;
         }
-        
+        .footer-copyright.text-center.py-3 {
+            background-color: #f8f9fa!important;
+                margin-top: 5%;
+}
+        .containertesting{
+            height: 100%;
+            width: 100%;
+        }
        
     </style>
 </head>
 <body>
+    <div class="containertesting">
     <form id="form1" runat="server">
         <div align="center">
             <nav class="navbar navbar-light bg-light">
@@ -87,6 +95,16 @@
         </asp:ContentPlaceHolder>
     </form>
     </nav>
+    <footer class="page-footer font-small blue">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">COMP313 - TEAM 6 
+    <a href=""> </a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+        </div>
     <script src="js/bootstrap.min.js"></script>
 
 </body>
